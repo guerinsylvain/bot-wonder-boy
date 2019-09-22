@@ -39,6 +39,7 @@ Here are the main parts of the chosen technical solution:
 <a id="testing-preview"></a>
 ## Testing preview
 Once trained, the python agent will be able to play the game by itself:  
+  
 ![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/preview.gif)
 
 <a id="lua"></a>
