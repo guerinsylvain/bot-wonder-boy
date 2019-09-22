@@ -7,6 +7,9 @@
 [Setup](#setup)  
 &nbsp;&nbsp;&nbsp;[Bizhawk](#setup-bizhawk)  
 &nbsp;&nbsp;&nbsp;[Python](#setup-python)  
+[How to train the agents](#how-to-train)  
+&nbsp;&nbsp;&nbsp;[Start the agent (python)](#how-to-train-python)  
+&nbsp;&nbsp;&nbsp;[Launch the ROM in the emulator and start the LUA script](#how-to-train-lua)      
 [Environment](#environment)  
 &nbsp;&nbsp;&nbsp;[State](#state)  
 &nbsp;&nbsp;&nbsp;[Action Space](#action-space)  
@@ -19,7 +22,7 @@
 <a id="overview"></a>
 ## Overview
 I started this project because I had no time to play games anymore.  
-Its ultimate goal is to set up an agent that will be able to finish the Wonder Boy game on the Sega Master System.  
+Its ultimate goal is to set up an agent that will be able to finish the Wonder Boy game on the Sega Master System at my place.  
 Here are the main parts of the chosen technical solution:
   * an emulator (Bizhawk) that will run the game
   * a LUA script that will
@@ -81,7 +84,7 @@ LUA Functions available inside Bizhawk are documented [here](http://tasvideos.or
     ```
     virtualenv --python="C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\python.exe" venv
     ```
-4.	From the root folder of the project, activate the 3.6 virtual environment by typing:
+4.	From the root folder of the project, activate the virtual environment by typing:
     ```
     .\venv\Scripts\activate.bat
     ```
@@ -90,13 +93,38 @@ LUA Functions available inside Bizhawk are documented [here](http://tasvideos.or
     cd scripts\client
     pip install -r requirements.txt   
     ```
+<a id="how-to-train"></a>
+## How to train the agents
+The following steps have to be done in the described sequence:
+<a id="how-to-train-python"></a>
+### Start the agent (python)
+1.	From the root folder of the project, activate the virtual environment by typing:
+    ```
+    .\venv\Scripts\activate.bat
+    ```
+2.  Launch the training script:
+    ```
+    cd scripts\client
+    python train.py
+    ```
+<a id="how-to-train-lua"></a>
+### Launch the ROM in the emulator and start the LUA script    
+1.  Start BizHawk
+2.  In the "File" menu, chose "Open ROM".  
+    Select the file "Wonder Boy (USA, Europe).zip" that you have previously copied in the "SMS" folder below "BizHawk-2.3".
+3.  Select "Lua Console" in the "Tools" menu.  
+    The "Lua Console" window opens.
+4.  In the "Script" menu of the "Lua Console" window, select "Open Script...".   
+    Select the file "train.lua" located in scrips/bizhawk
+
+The training should start.
+If anything goes wrong, please review the [Setup section](#setup)
 
 <a id="environment"></a>
 ## Environment
 
 <a id="state"></a>
 ### State
-
 The state is observed at each frame and is composed of the following informations:  
 * a screenshot (will be sent to clipboard by Lua script)  
 * the wonderboy vitality/health (memory address 0x0C36 in Main RAM that varies from 0 to 12)  
