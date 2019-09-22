@@ -5,8 +5,9 @@
 [What is LUA](#lua)  
 [Bizhawk](#bizhawk)  
 [Setup](#setup)  
-&nbsp;&nbsp;&nbsp;[Bizhawk](#setup-bizhawk)  
-&nbsp;&nbsp;&nbsp;[Python](#setup-python)  
+&nbsp;&nbsp;&nbsp;[Get the sources](#get-sources)  
+&nbsp;&nbsp;&nbsp;[Install and configure Bizhawk](#setup-bizhawk)  
+&nbsp;&nbsp;&nbsp;[Install and configure Python](#setup-python)  
 [How to train the agents](#how-to-train)  
 &nbsp;&nbsp;&nbsp;[Start the agent (python)](#how-to-train-python)  
 &nbsp;&nbsp;&nbsp;[Launch the ROM in the emulator and start the LUA script](#how-to-train-lua)      
@@ -52,8 +53,13 @@ LUA Functions available inside Bizhawk are documented [here](http://tasvideos.or
 
 <a id="setup"></a>
 ## Setup
+<a id="get-sources"></a>
+### Get the sources
+You may
+* close this github repository 
+* or download a zip containing the latest version or a given release of the code
 <a id="setup-bizhawk"></a>
-### Bizhawk
+### Install and configure Bizhawk
 1.  Run the PowerShell script bizhawk.ps1 located in the folder "setup".  
     To install it, right-click it and select "Run with PowerShell".  
     This will download & install a fresh copy of BizHawk with all the required files in their correct locations.  
@@ -68,7 +74,7 @@ LUA Functions available inside Bizhawk are documented [here](http://tasvideos.or
     Create a new folder "SMS" below the "BizHaw-2.3".
     Copy the zip in it.
 <a id="setup-python"></a>
-### Python 
+### Install and configure Python 
 1.  Install [Python 3.7 or later](https://www.python.org/downloads/).
 2.	From the root folder of the project, type 
     ```
