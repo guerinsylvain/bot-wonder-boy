@@ -1,4 +1,5 @@
-# Reinforcement Learning for Wonder Boy (Sega Master System)
+# Reinforcement Learning applied to bot in video games:  
+# Wonder Boy (Sega Master System)
 
 [Overview](#overview)  
 [Testing preview](#testing-preview)  
