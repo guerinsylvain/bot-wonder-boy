@@ -72,10 +72,11 @@ You may
     NLua does not support LuaSockets properly.  
     After changing this setting, you need to close and restart the emulator for the setting to properly update.  
 2.  Download the Sega Master System Bios Version 1.3 (Usa, Europe) from this [link](http://www.planetemu.net/rom/sega-master-system/bios-sega-master-system-usa-europe-v1-3-1)
-    Unzip the content of the file in the "Firmware" folder located below "BizHaw-2.3".
+    Unzip the content of the file in the "Firmware" folder located below "BizHaw-2.3".  
+    The file "[BIOS] Sega Master System (USA, Europe) (v1.3).sms" should be copied directly in the folder "BizHaw-2.3".
 3.  Download the ROM of the Wonder Boy game from this [link](https://wowroms.com/en/roms/sega-master-system/download-wonder-boy-usa/58110.html).
     Create a new folder "SMS" below the "BizHaw-2.3".
-    Copy the zip in it.
+    Copy the zip file in it.
 <a id="setup-python"></a>
 ### Install and configure Python 
 1.  Install [Python 3.7 or later](https://www.python.org/downloads/).
