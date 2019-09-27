@@ -1,6 +1,8 @@
 # Reinforcement Learning applied to bot in video games:  
 # Wonder Boy (Sega Master System)
 
+Please visit [youtube](https://www.youtube.com/playlist?list=PLmEQNCYMSVf1jtUfWOSCgW1bvtudmdTrE) for additional informations.
+
 [Overview](#overview)  
 [Testing preview](#testing-preview)  
 [What is LUA](#lua)  
