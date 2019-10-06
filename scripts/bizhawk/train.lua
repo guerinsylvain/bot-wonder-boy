@@ -8,7 +8,6 @@ tcp:connect("127.0.0.1", 8001)
 
 -- main loop
 console.clear()
-print("start")
 local playing = true
 local inGame = false
 
@@ -17,6 +16,7 @@ while playing do
     -- Reset game
     if inGame == false then
         console.clear()
+        print("start new episode")
         savestate.load('train.State')
         inGame = true
         emu.frameadvance()
