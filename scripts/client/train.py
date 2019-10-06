@@ -2,6 +2,7 @@ from lib.agent import Agent
 from lib.environment import Environment
 from lib.experience import Experience
 
+print(f'Starting training')
 num_actions = 12
 num_episodes = 1000
 agent = Agent(num_actions)
@@ -9,6 +10,7 @@ environment = Environment()
 
 for episode in range(num_episodes):
 
+    print(f'Starting episode {episode}')
     done = 0
     environment.start()
 
