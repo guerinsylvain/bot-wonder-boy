@@ -1,3 +1,4 @@
+from PIL import ImageGrab
 from lib.console import Console
 
 class Environment:    
@@ -18,4 +19,5 @@ class Environment:
         feedback = buf.split(' ')    
         reward = int(feedback[0])
         done = int(feedback[1]) 
-        return(reward, done)
+        screenshot = ImageGrab.grabclipboard()
+        return(reward, screenshot, done)

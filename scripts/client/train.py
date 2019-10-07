@@ -17,6 +17,6 @@ for episode in range(num_episodes):
     while done != 1:
         action = agent.choose_action()
         environment.sendAction(action)
-        reward, done = environment.getState()
+        reward, screenshot, done = environment.getState()        
 
 environment.exit()
