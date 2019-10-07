@@ -8,13 +8,20 @@ function M.init(vitality)
 end
 
 function M.get_reward(vitality) 
-    if previous_vitality == vitality then
-        return 0
-    else
-        local reward = vitality - previous_vitality
-        previous_vitality = vitality
+    local reward = 0
+    
+    -- No reward if character is dead
+    if vitality == 0 then
         return reward
     end
+
+    -- If health has increased, it deserves also a reward
+    if vitality > previous_vitality then
+        reward = reward + ( (vitality - previous_vitality) * 1000)
+    end
+
+    previous_vitality = vitality
+    return reward
 end
 
 return M
