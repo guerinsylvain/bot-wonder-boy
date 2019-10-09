@@ -5,6 +5,7 @@ from lib.console import Console
 class Environment:    
     def __init__(self):
         self.console = Console()
+        self.image_size =  (192, 256, 3)
 
     def start(self):
         _ = self.console.recv()
@@ -20,6 +21,8 @@ class Environment:
         feedback = buf.split(' ')    
         reward = int(feedback[0])
         done = int(feedback[1]) 
-        # get screenshot as [192,256,3] array with the last dimension representing RGB
+        # get screenshot as a [192,256,3] array with the last dimension representing RGB
+        # this is the actual resolution of the game in the emulator
+        # no need to do any extra processing
         screenshot = np.array(ImageGrab.grabclipboard()) 
         return(reward, screenshot, done)
