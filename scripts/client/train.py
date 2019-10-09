@@ -18,6 +18,13 @@ for episode in range(num_episodes):
     last_screenshot = np.zeros(environment.image_size) 
     environment.start()
 
+    first_random_action = np.random.choice(range(agent.num_actions))
+    environment.sendAction(first_random_action)
+    reward, screenshot, done = environment.getState()    
+    agent.gather_experience(last_screenshot, first_random_action, reward, screenshot)
+    last_observation = screenshot
+    rewards_current_episode += reward
+
     while done != 1:
         action = agent.choose_action()
         environment.sendAction(action)
