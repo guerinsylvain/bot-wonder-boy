@@ -1,3 +1,4 @@
+import numpy as np
 from PIL import ImageGrab
 from lib.console import Console
 
@@ -19,5 +20,6 @@ class Environment:
         feedback = buf.split(' ')    
         reward = int(feedback[0])
         done = int(feedback[1]) 
-        screenshot = ImageGrab.grabclipboard()
+        # get screenshot as [192,256,3] array with the last dimension representing RGB
+        screenshot = np.array(ImageGrab.grabclipboard()) 
         return(reward, screenshot, done)
