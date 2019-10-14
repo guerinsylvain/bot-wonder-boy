@@ -1,26 +1,18 @@
 -- Reward module
 local M = {}
 
-local previous_vitality = 0
+local previous_score = 0
 
-function M.init(vitality)
-    previous_vitality = vitality
+function M.init(score)
+    previous_score = score
 end
 
-function M.get_reward(vitality) 
+function M.get_reward(score) 
     local reward = 0
     
-    -- No reward if character is dead
-    if vitality == 0 then
-        return reward
-    end
-
-    -- If health has increased, it deserves also a reward
-    if vitality > previous_vitality then
-        reward = reward + ( (vitality - previous_vitality) * 1000)
-    end
-
-    previous_vitality = vitality
+    reward = score - previous_score
+    previous_score = score
+    
     return reward
 end
 

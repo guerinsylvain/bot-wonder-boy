@@ -20,7 +20,7 @@ while playing do
         savestate.load('train.State')
         inGame = true
         emu.frameadvance()
-        reward.init(mem.get_vitality())
+        reward.init(mem.get_score())
         client.screenshottoclipboard()
     end
 
@@ -42,8 +42,8 @@ while playing do
         emu.frameadvance()
 
         client.screenshottoclipboard()
-        rwd = reward.get_reward(mem.get_vitality()) 
-           
+        rwd = reward.get_reward(mem.get_score()) 
+
         if mem.get_vitality() == 0 then
             print("lost")
             inGame = false

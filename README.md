@@ -1,7 +1,7 @@
 # Reinforcement Learning applied to bot in video games:  
 # Wonder Boy (Sega Master System)
 
-Please visit [youtube](https://www.youtube.com/playlist?list=PLmEQNCYMSVf1jtUfWOSCgW1bvtudmdTrE) for additional informations.
+Please visit [youtube](https://www.youtube.com/playlist?list=PLmEQNCYMSVf1jtUfWOSCgW1bvtudmdTrE) for videos (currently in french) explaining this project.
 
 [Overview](#overview)  
 [Testing preview](#testing-preview)  
@@ -140,6 +140,11 @@ If anything goes wrong, please review the [Setup section](#setup)
 The state is observed at each frame and is composed of the following informations:  
 * a screenshot (will be sent to clipboard by Lua script)  
 * the wonderboy vitality/health (memory address 0x0C36 in Main RAM that varies from 0 to 12)  
+* the score:  
+base 10 (memory address 0x0121 in Main RAM that varies from 0 to 99)  
+base 1000 (memory address 0x0122 in Main RAM that varies from 0 to 99)  
+base 100000 (memory address 0x0123 in Main RAM that varies from 0 to 99)  
+
 
 Bizhawk offers RAM search and RAM watch tools to help you find the memory address of a specific value or move.  
 Here is a great [tutorial](https://www.youtube.com/watch?v=zsPLCIAJE5o&t=2064s) by The8bitbeast.
@@ -169,7 +174,9 @@ BUTTON 4 = JUMP
 
 <a id="reward"></a>
 ### Reward Function
-The difference of vitality/health after each action and extra bonus at the end of a level.
+The score.
+A vitality/health equal to 0 is used to detect the end of an episode.
+An episode is a sequence of states and actions until the end of the game.
 
 <a id="result"></a>
 ## Result
