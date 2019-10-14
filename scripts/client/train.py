@@ -34,4 +34,5 @@ for episode in range(num_episodes):
         last_observation = screenshot
         rewards_current_episode += reward    
         print(f'episode reward: {rewards_current_episode}', end = '\r')
+    print(f'episode reward: {rewards_current_episode}')
 environment.exit()
