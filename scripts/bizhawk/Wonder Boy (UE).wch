@@ -1,4 +1,6 @@
 SystemID SMS
 0C36	b	u	0	Main RAM	Health
-0121	b	u	0	Main RAM	Scores ?
+0121	b	h	0	Main RAM	Score x 10
+0122	b	h	0	Main RAM	Score x 1000
+0123	b	h	0	Main RAM	Score x 100000
 
