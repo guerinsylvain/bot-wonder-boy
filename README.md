@@ -10,6 +10,8 @@ Please visit [youtube](https://www.youtube.com/playlist?list=PLmEQNCYMSVf1jtUfWO
 [Setup](#setup)  
 &nbsp;&nbsp;&nbsp;[Get the sources](#get-sources)  
 &nbsp;&nbsp;&nbsp;[Install and configure Bizhawk](#setup-bizhawk)  
+&nbsp;&nbsp;&nbsp;[Install the CUDA Toolkit 10.0](#setup-cudatoolkit)  
+&nbsp;&nbsp;&nbsp;[Install the NVIDIA CUDA Deep Neural Network library (cuDNN v7.6.4 (September 27, 2019), for CUDA 10.0)](#setup-cudnn)
 &nbsp;&nbsp;&nbsp;[Install and configure Python](#setup-python)  
 [How to train the agents](#how-to-train)  
 &nbsp;&nbsp;&nbsp;[Start the agent (python)](#how-to-train-python)  
@@ -79,6 +81,13 @@ You may
 3.  Download the ROM of the Wonder Boy game from this [link](https://wowroms.com/en/roms/sega-master-system/download-wonder-boy-usa/58110.html).
     Create a new folder "SMS" below the "BizHaw-2.3".
     Copy the zip file in it.
+<a id="setup-cudatoolkit"></a>
+### Install the CUDA Toolkit 10.0
+1. Please install from the following [link](https://developer.nvidia.com/cuda-10.0-download-archive)  
+<a id="setup-cudnn"></a>
+### Install the [NVIDIA CUDA Deep Neural Network library (cuDNN v7.6.4 (September 27, 2019), for CUDA 10.0)](https://developer.nvidia.com/cudnn)
+1. Follow the instructions detailed [here](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)  
+Make sure to install the version 7.6.4 (September 27, 2019), for CUDA 10.0
 <a id="setup-python"></a>
 ### Install and configure Python 
 1.  Install [Python 3.7 or later](https://www.python.org/downloads/).
