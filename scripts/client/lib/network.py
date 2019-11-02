@@ -9,7 +9,7 @@ class Network:
         self.model = self.build_model(image_size, n_out)
 
     def build_model(self, image_size, n_out):           
-        vgg16_model = keras.applications.vgg16.VGG16(include_top=True)
+        vgg16_model = keras.applications.vgg16.VGG16(include_top=False, input_shape=self.image_size)
         model = Sequential()
         for layer in vgg16_model.layers: #[:-1]
             model.add(layer)
