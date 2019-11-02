@@ -5,7 +5,7 @@ from lib.environment import Environment
 from lib.experience import Experience
 
 print(f'starting training')
-num_actions = 12
+num_actions = 11
 num_episodes = 1000
 environment = Environment()
 agent = DeepQLearningAgent(environment.image_size, num_actions)
@@ -26,7 +26,7 @@ for episode in range(num_episodes):
     rewards_current_episode += reward
 
     while done != 1:
-        action = agent.choose_action()
+        action = agent.choose_action(last_screenshot)
         environment.sendAction(action)
         reward, screenshot, done = environment.getState()    
         agent.gather_experience(last_screenshot, action, reward, screenshot)

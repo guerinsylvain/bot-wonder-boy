@@ -1,5 +1,5 @@
 import keras
-from keras.layers.core import Dense
+from keras.layers.core import Dense, Flatten
 from keras.models import Model, Sequential
 from keras.optimizers import Adam
 
@@ -15,6 +15,7 @@ class Network:
             model.add(layer)
         for layer in model.layers:
             layer.trainable = False
+        model.add(Flatten())
         model.add(Dense(n_out, activation='relu')) 
         # out = Dense(n_out, activation='relu')
         # model = Model(input=vgg16_model.input, output=out)        
@@ -26,4 +27,4 @@ class Network:
         return self.model.predict(state)
 
     def train(self, train_samples, train_labels):
-        self.model.fit(train_samples, train_labels, validation_split=0.1, batch_size=10, epochs=20, shuffle=True, verbose=2)
+        self.model.fit(train_samples, train_labels, validation_split=0.1, batch_size=10, epochs=1, shuffle=True, verbose=0)
