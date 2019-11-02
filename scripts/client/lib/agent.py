@@ -23,7 +23,7 @@ class Agent:
 class DeepQLearningAgent(Agent):
     def __init__(self, image_size, num_actions):
         super().__init__( num_actions)
-        self.batch_size = 1000
+        self.batch_size = 150
         self.gamma = 0.9
         self.image_size = image_size
         self.num_actions = num_actions
