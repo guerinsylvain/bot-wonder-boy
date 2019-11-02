@@ -22,7 +22,7 @@ for episode in range(num_episodes):
     environment.sendAction(first_random_action)
     reward, screenshot, done = environment.getState()    
     agent.gather_experience(last_screenshot, first_random_action, reward, screenshot)
-    last_observation = screenshot
+    last_screenshot = screenshot
     rewards_current_episode += reward
 
     while done != 1:
@@ -31,7 +31,7 @@ for episode in range(num_episodes):
         reward, screenshot, done = environment.getState()    
         agent.gather_experience(last_screenshot, action, reward, screenshot)
         agent.learn()
-        last_observation = screenshot
+        last_screenshot = screenshot
         rewards_current_episode += reward    
         print(f'episode reward: {rewards_current_episode}', end = '\r')
     print(f'episode reward: {rewards_current_episode}')
