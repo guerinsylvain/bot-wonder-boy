@@ -63,7 +63,7 @@ LUA Functions available inside Bizhawk are documented [here](http://tasvideos.or
 <a id="get-sources"></a>
 ### Get the sources
 You may
-* close this github repository 
+* clone this github repository 
 * or download a zip containing the latest version or a given release of the code
 <a id="setup-bizhawk"></a>
 ### Install and configure Bizhawk
@@ -84,6 +84,7 @@ You may
 <a id="setup-cudatoolkit"></a>
 ### Install the CUDA Toolkit 10.0
 1. Please install from the following [link](https://developer.nvidia.com/cuda-10.0-download-archive)  
+Note that you can uncheck "Install Visual Studio Extensions" in the options.
 <a id="setup-cudnn"></a>
 ### Install the [NVIDIA CUDA Deep Neural Network library (cuDNN v7.6.4 (September 27, 2019), for CUDA 10.0)](https://developer.nvidia.com/cudnn)
 1. Follow the instructions detailed [here](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)  
