@@ -168,14 +168,14 @@ BUTTON 4 = JUMP
 
 | Values        | BUTTONS              |
 | ------------- | -------------------- |
-| 0             | LEFT                 |
-| 1             | LEFT + FIRE          |
-| 2             | LEFT + JUMP          |
-| 3             | LEFT + FIRE + JUMP   |
-| 4             | RIGHT                |
-| 5             | RIGHT + FIRE         |
-| 6             | RIGHT + JUMP         |
-| 7             | RIGHT + FIRE + JUMP  |
+| 0             | RIGHT                |
+| 1             | RIGHT + FIRE         |
+| 2             | RIGHT + JUMP         |
+| 3             | RIGHT + FIRE + JUMP  |
+| 4             | LEFT                 |
+| 5             | LEFT + FIRE          |
+| 6             | LEFT + JUMP          |
+| 7             | LEFT + FIRE + JUMP   |
 | 8             | FIRE                 |
 | 9             | JUMP                 |
 | 10            | FIRE + JUMP          |

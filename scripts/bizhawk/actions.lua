@@ -10,49 +10,49 @@ function M.process(action)
                     ["B1"] = false,
                     ["B2"] = false}
 
-    if action == 0 then -- LEFT
-        defaultInput["Left"] = true
-        joypad.set(defaultInput, 1)
-    end
-
-    if action == 1 then -- -- LEFT + FIRE
-        defaultInput["Left"] = true
-        defaultInput["B1"] = true
-        joypad.set(defaultInput, 1)
-    end
-
-    if action == 2 then -- -- LEFT + JUMP
-        defaultInput["Left"] = true
-        defaultInput["B2"] = true
-        joypad.set(defaultInput, 1)
-    end
-
-    if action == 3 then -- -- LEFT + FIRE + JUMP 
-        defaultInput["Left"] = true
-        defaultInput["B1"] = true
-        defaultInput["B2"] = true
-        joypad.set(defaultInput, 1)
-    end
-
-    if action == 4 then -- RIGHT
+    if action == 0 then -- RIGHT
         defaultInput["Right"] = true
         joypad.set(defaultInput, 1)
     end
 
-    if action == 5 then -- RIGHT + FIRE
+    if action == 1 then -- RIGHT + FIRE
         defaultInput["Right"] = true
         defaultInput["B1"] = true
         joypad.set(defaultInput, 1)
     end
 
-    if action == 6 then -- RIGHT + JUMP
+    if action == 2 then -- RIGHT + JUMP
         defaultInput["Right"] = true
         defaultInput["B2"] = true
         joypad.set(defaultInput, 1)
     end
 
-    if action == 7 then -- RIGHT + JUMP + FIRE
+    if action == 3 then -- RIGHT + JUMP + FIRE
         defaultInput["Right"] = true
+        defaultInput["B1"] = true
+        defaultInput["B2"] = true
+        joypad.set(defaultInput, 1)
+    end    
+    
+    if action == 4 then -- LEFT
+        defaultInput["Left"] = true
+        joypad.set(defaultInput, 1)
+    end
+
+    if action == 5 then -- -- LEFT + FIRE
+        defaultInput["Left"] = true
+        defaultInput["B1"] = true
+        joypad.set(defaultInput, 1)
+    end
+
+    if action == 6 then -- -- LEFT + JUMP
+        defaultInput["Left"] = true
+        defaultInput["B2"] = true
+        joypad.set(defaultInput, 1)
+    end
+
+    if action == 7 then -- -- LEFT + FIRE + JUMP 
+        defaultInput["Left"] = true
         defaultInput["B1"] = true
         defaultInput["B2"] = true
         joypad.set(defaultInput, 1)
