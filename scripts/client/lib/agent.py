@@ -27,6 +27,7 @@ class DeepQLearningAgent(Agent):
         self.epsilon = 0.05
         self.gamma = 0.9
         self.image_size = image_size
+        self.learn_count = 0
         self.num_actions = num_actions
         self.q = Network(image_size, num_actions)
         self.replay_memory = ReplayMemory(capacity=50000)        
@@ -43,6 +44,13 @@ class DeepQLearningAgent(Agent):
             return np.random.choice(range(self.num_actions))               
 
     def learn(self):
+
+        self.learn_count += 1
+        
+        # q update postpone every 100 experiences to improve perfs
+        if (self.learn_count % 100) != 0:
+            return
+
         batch = self.replay_memory.sample(self.batch_size)
 
         last_states = np.array([exp.start_state for exp in batch])
