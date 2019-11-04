@@ -47,8 +47,8 @@ class DeepQLearningAgent(Agent):
 
         self.learn_count += 1
         
-        # q update postpone every 100 experiences to improve perfs
-        if (self.learn_count % 100) != 0:
+        # q update postpone every 10 experiences to improve perfs
+        if (self.learn_count % 10) != 0:
             return
 
         batch = self.replay_memory.sample(self.batch_size)
