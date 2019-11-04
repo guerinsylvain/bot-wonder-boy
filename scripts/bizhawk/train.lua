@@ -10,6 +10,7 @@ tcp:connect("127.0.0.1", 8001)
 console.clear()
 local playing = true
 local inGame = false
+local vitality = 0
 
 while playing do
 
@@ -20,7 +21,8 @@ while playing do
         savestate.load('train.State')
         inGame = true
         emu.frameadvance()
-        reward.init(mem.get_score())
+        vitality = mem.get_vitality()
+        reward.init(mem.get_score(), vitality)
         client.screenshottoclipboard()
     end
 
@@ -42,9 +44,10 @@ while playing do
         emu.frameadvance()
 
         client.screenshottoclipboard()
-        rwd = reward.get_reward(mem.get_score()) 
+        vitality = mem.get_vitality()
+        rwd = reward.get_reward(mem.get_score(), vitality) 
 
-        if mem.get_vitality() == 0 then
+        if vitality == 0 then
             print("lost")
             inGame = false
             done = 1            
