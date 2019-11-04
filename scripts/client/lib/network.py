@@ -25,4 +25,4 @@ class Network:
         return self.model.predict(state)
 
     def train(self, train_samples, train_labels):
-        self.model.fit(train_samples, train_labels, validation_split=0.1, batch_size=1, epochs=1, shuffle=True, verbose=0)
+        self.model.fit(train_samples, train_labels, epochs=1, verbose=0)
