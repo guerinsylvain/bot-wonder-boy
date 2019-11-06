@@ -31,7 +31,8 @@ class DeepQLearningAgent(Agent):
         self.learn_count = 0
         self.num_actions = num_actions
         self.policy_network = Network(image_size, num_actions)
-        self.target_network = self.policy_network.clone()
+        self.target_network = Network(image_size, num_actions)
+        self.target_network.weights = self.policy_network.weights
         self.replay_memory = ReplayMemory(capacity=50000)    
 
     def gather_experience(self, last_screenshot, action, reward, new_screenshot):
@@ -46,7 +47,6 @@ class DeepQLearningAgent(Agent):
             return np.random.choice(range(self.num_actions))               
 
     def learn(self):
-
         self.try_learn_count += 1        
         # q update postpone every 10 experiences to improve perfs
         if (self.try_learn_count % 10) != 0:
@@ -74,7 +74,7 @@ class DeepQLearningAgent(Agent):
         self.policy_network.train(train_samples=x_batch, train_labels=y_batch)
 
         self.learn_count +=1
-        if (self.learn_count % 100) != 0:
-            self.target_network.model.set_weights(self.policy_network.model.get_weights())
+        if (self.learn_count % 15) == 0:
+            self.target_network.weights = self.policy_network.weights
             self.learn_count = 0
         return
