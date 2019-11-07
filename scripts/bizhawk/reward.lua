@@ -20,7 +20,7 @@ function M.get_reward(score, vitality)
     -- Will happen when touching a rock by example
     local vitalityDifference = previous_vitality - vitality
     if vitalityDifference > 1 then
-        print(vitalityDifference)
+        -- print(vitalityDifference)
         reward = reward - (100 * vitalityDifference)
     end
     previous_vitality = vitality
