@@ -33,7 +33,12 @@ class Network:
     def compute(self, state):
         return self.__model.predict(state)
 
+    def load_weights(self, fileName):
+        self.__model.load_weights(f'{fileName}.h5')
+    
+    def save_weights(self, fileName):
+        self.__model.save_weights(f'{fileName}.h5')
+
     def train(self, train_samples, train_labels):
         self.__model.fit(train_samples, train_labels, epochs=1, verbose=0)
-
     

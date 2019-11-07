@@ -78,3 +78,13 @@ class DeepQLearningAgent(Agent):
             self.target_network.weights = self.policy_network.weights
             self.learn_count = 0
         return
+
+    def loadModel(self, num_episodes):
+        self.policy_network.load_weights(f'policy_network_weights_{num_episodes}')
+        self.target_network.load_weights(f'policy_network_weights_{num_episodes}')
+        return
+
+    def saveModel(self, num_episodes):
+        self.policy_network.save_weights(f'policy_network_weights_{num_episodes}')
+        return
+

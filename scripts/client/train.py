@@ -34,5 +34,7 @@ for episode in range(num_episodes):
         last_screenshot = screenshot
         rewards_current_episode += reward    
         print(f'episode reward: {rewards_current_episode}', end = '\r')
+    
+    agent.saveModel(episode)
     print(f'episode reward: {rewards_current_episode}')
 environment.exit()
