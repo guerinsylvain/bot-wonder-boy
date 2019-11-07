@@ -19,6 +19,7 @@ Please visit [youtube](https://www.youtube.com/playlist?list=PLmEQNCYMSVf1jtUfWO
 [Environment](#environment)  
 &nbsp;&nbsp;&nbsp;[State](#state)  
 &nbsp;&nbsp;&nbsp;[Action Space](#action-space)  
+&nbsp;&nbsp;&nbsp;[Training Action Space](#training-action-space)  
 &nbsp;&nbsp;&nbsp;[Reward Function](#reward-function)  
 [Result](#result)  
 &nbsp;&nbsp;&nbsp;[Random state to action policy](#result-random-policy)  
@@ -182,9 +183,20 @@ BUTTON 4 = JUMP
 | 10            | FIRE + JUMP          |
 | 11            | NONE                 |
 
+<a id="training-action-space"></a>
+### Training Action Space
+
+| Values        | BUTTONS              |
+| ------------- | -------------------- |
+| 0             | RIGHT                |
+| 1             | RIGHT + FIRE         |
+| 2             | RIGHT + JUMP         |
+| 3             | RIGHT + FIRE + JUMP  |
+
 <a id="reward"></a>
 ### Reward Function
 The score.
+Extra penalty if more that one vitality is lost (will happen when touching a rock by example...).
 A vitality/health equal to 0 is used to detect the end of an episode.
 An episode is a sequence of states and actions until the end of the game.
 
