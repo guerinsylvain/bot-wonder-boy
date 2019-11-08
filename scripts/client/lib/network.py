@@ -1,5 +1,5 @@
 import keras
-from keras.layers import Conv2D
+from keras.layers import Conv1D, Conv2D
 from keras.layers.core import Dense, Flatten
 from keras.models import Model, Sequential
 from keras.optimizers import Adam
@@ -12,9 +12,9 @@ class Network:
 
     def build_model(self):           
         model = Sequential()
-        model.add(Conv2D(16, kernel_size =(3,3), activation="relu", input_shape=self.__image_size))
-        model.add(Conv2D(32, kernel_size =(3,3), activation="relu"))
-        model.add(Conv2D(32, kernel_size =(3,3), activation="relu"))
+        model.add(Conv1D(16, kernel_size =(3), activation="relu", input_shape=self.__image_size))
+        model.add(Conv1D(32, kernel_size =(3), activation="relu"))
+        model.add(Conv1D(32, kernel_size =(3), activation="relu"))
         model.add(Flatten())
         model.add(Dense(128, activation='relu'))         
         model.add(Dense(self.__n_out, init="uniform", activation='relu'))         

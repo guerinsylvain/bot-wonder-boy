@@ -2,25 +2,31 @@ import numpy as np
 from PIL import ImageGrab
 from lib.console import Console
 
-class Environment:    
-    def __init__(self):
-        self.console = Console()
-        self.image_size =  (192, 256, 3)
+
+class Environment:
+    def __init__(self, gray_scale: bool):
+        self.__console = Console()
+        self.__image_size = (192, 256) if gray_scale else (192, 256, 3)
+        self.__gray_scale = gray_scale
+
+    @property
+    def image_size(self):
+        return self.__image_size
 
     def start(self):
-        _ = self.console.recv()
+        _ = self.__console.recv()
 
     def exit(self):
-        self.console.close()
+        self.__console.close()
 
     def sendAction(self, action):
-        self.console.send('{}\n'.format(action))
+        self.__console.send('{}\n'.format(action))
 
     def getState(self):
-        buf = self.console.recv()
-        feedback = buf.split(' ')    
+        buf = self.__console.recv()
+        feedback = buf.split(' ')
         reward = int(feedback[0])
-        done = int(feedback[1]) 
+        done = int(feedback[1])
         # get screenshot as a [192,256,3] array with the last dimension representing RGB
         # this is the actual resolution of the game in the emulator
         # no need to do any extra processing
@@ -28,6 +34,9 @@ class Environment:
         # just a security because from time to time, img may be None...
         while img is None:
             img = ImageGrab.grabclipboard()
-        
-        screenshot = np.array(img) 
+
+        if self.__gray_scale:
+            img = img.convert('L')
+
+        screenshot = np.array(img)
         return(reward, screenshot, done)

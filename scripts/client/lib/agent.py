@@ -61,7 +61,8 @@ class DeepQLearningAgent(Agent):
         next_states = np.array([exp.end_state for exp in batch])
         q_next_states = np.array(self.target_network.compute(next_states))
 
-        x_batch = np.zeros([np.shape(batch)[0], self.image_size[0], self.image_size[1], self.image_size[2]])
+        # x_batch = np.zeros([np.shape(batch)[0], self.image_size[0], self.image_size[1], self.image_size[2]])
+        x_batch = np.zeros([np.shape(batch)[0], self.image_size[0], self.image_size[1]])
         y_batch = np.zeros([np.shape(batch)[0], self.num_actions])
 
         for i in range(np.shape(batch)[0]):
