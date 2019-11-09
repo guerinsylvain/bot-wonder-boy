@@ -42,8 +42,12 @@ while playing do
             action, status, partial = tcp:receive('*l')           
         end
 
-        actions.process(tonumber(action)); 
-        emu.frameadvance()
+        -- repeat the action on the next 20 frames
+        for i = 20,1,-1 
+        do 
+            actions.process(tonumber(action)); 
+            emu.frameadvance()
+        end        
 
         client.screenshottoclipboard()
         vitality = mem.get_vitality()
