@@ -5,8 +5,8 @@ from lib.environment import Environment
 from lib.experience import Experience
 
 print(f'starting training')
-num_actions = 4 # RIGHT only actions used for training
-num_episodes = 1000
+num_actions = 12 # RIGHT only actions used for training
+num_episodes = 100000
 environment = Environment(gray_scale = True)
 agent = DeepQLearningAgent(environment.image_size, num_actions)
 
@@ -35,6 +35,8 @@ for episode in range(num_episodes):
         rewards_current_episode += reward    
         print(f'episode reward: {rewards_current_episode}', end = '\r')
     
-    agent.saveModel(episode)
+    if (episode % 100) == 0:
+        agent.saveModel(episode)
+
     print(f'episode reward: {rewards_current_episode}')
 environment.exit()

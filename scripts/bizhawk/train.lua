@@ -43,7 +43,7 @@ while playing do
         end
 
         -- repeat the action on the next 20 frames
-        for i = 20,1,-1 
+        for i = 30,1,-1 
         do 
             actions.process(tonumber(action)); 
             emu.frameadvance()
