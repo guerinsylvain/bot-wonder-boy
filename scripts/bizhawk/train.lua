@@ -11,6 +11,7 @@ console.clear()
 local playing = true
 local inGame = false
 local vitality = 0
+local level_position = 0
 
 while playing do
 
@@ -22,6 +23,7 @@ while playing do
         inGame = true
         emu.frameadvance()
         vitality = mem.get_vitality()
+        level_position = mem.get_level_position()
         reward.init(mem.get_score(), vitality)
         client.screenshottoclipboard()
     end
@@ -45,6 +47,7 @@ while playing do
 
         client.screenshottoclipboard()
         vitality = mem.get_vitality()
+        level_position = mem.get_level_position()
         rwd = reward.get_reward(mem.get_score(), vitality) 
 
         if vitality == 0 then
@@ -52,6 +55,13 @@ while playing do
             inGame = false
             done = 1            
         end
+
+        if level_position == 32 then
+            print("won")
+            inGame = false
+            done = 1            
+        end
+
         tcp:send(rwd.." "..done)
         emu.frameadvance()
     end

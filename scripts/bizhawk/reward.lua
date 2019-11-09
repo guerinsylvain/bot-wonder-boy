@@ -9,23 +9,29 @@ function M.init(score, vitality)
     previous_vitality = vitality
 end
 
-function M.get_reward(score, vitality) 
-    local reward = 0
+function M.get_reward(score, vitality, level_position) 
 
-    -- Grant reward for score increase
-    reward = score - previous_score
+    -- A large negative reward of -100 is given to the system for dying
+    if vitality == 0 then
+        return -100
+    end
+
+    -- A large positive reward of +100 is given for reaching the end of a level
+    if level_position == 32 then
+        return 100
+    end 
+
+    -- Grant small positive reward of +1 for increasing the game score
+    if score > previous_score then
+        return 1
+    end
     previous_score = score
 
-    -- Penality if more that one vitality is lost
-    -- Will happen when touching a rock by example
-    local vitalityDifference = previous_vitality - vitality
-    if vitalityDifference > 1 then
-        -- print(vitalityDifference)
-        reward = reward - (100 * vitalityDifference)
-    end
-    previous_vitality = vitality
-    
-    return reward
+    -- A small negative reward of -1 is given for any other action. 
+    -- Giving this constant negative reward will prevent the agent from remaining in one area 
+    -- and will ultimately prevent it from dying due to running out of time in a level
+    return -1
+        
 end
 
 return M
