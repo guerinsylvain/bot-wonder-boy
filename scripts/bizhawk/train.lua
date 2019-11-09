@@ -52,7 +52,7 @@ while playing do
         client.screenshottoclipboard()
         vitality = mem.get_vitality()
         level_position = mem.get_level_position()
-        rwd = reward.get_reward(mem.get_score(), vitality) 
+        rwd = reward.get_reward(mem.get_score(), vitality, level_position) 
 
         if vitality == 0 then
             print("lost")
