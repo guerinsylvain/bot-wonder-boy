@@ -5,7 +5,7 @@ from lib.environment import Environment
 from lib.experience import Experience
 
 print(f'starting training')
-num_actions = 12 # RIGHT only actions used for training
+num_actions = 12
 num_episodes = 100000
 environment = Environment(gray_scale = True)
 agent = DeepQLearningAgent(environment.image_size, num_actions)
