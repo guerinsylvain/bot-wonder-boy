@@ -40,5 +40,5 @@ class Network:
         self.__model.save_weights(f'{fileName}.h5')
 
     def train(self, train_samples, train_labels):
-        self.__model.fit(train_samples, train_labels, epochs=3, verbose=0)
+        self.__model.fit(train_samples, train_labels, epochs=15, verbose=0)
     
