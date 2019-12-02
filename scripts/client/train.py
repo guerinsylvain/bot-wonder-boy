@@ -37,10 +37,10 @@ for episode in range(num_episodes):
         last_screenshot = screenshot
         rewards_current_episode += reward    
         position_current_episode = max(position_current_episode, level_position)
-        print(f'level position: {position_current_episode:0>2d}/32, episode reward: {rewards_current_episode}', end = '\r')
+        print(f'level position: {position_current_episode:0>2d}/32, episode reward: {rewards_current_episode}, e: {agent.epsilon:.2f}     ', end = '\r')
     
     if (episode % 100) == 0:
         agent.saveModel(episode)
 
-    print(f'level position: {position_current_episode:0>2d}/32, episode reward: {rewards_current_episode}')
+    print(f'level position: {position_current_episode:0>2d}/32, episode reward: {rewards_current_episode}, e: {agent.epsilon:.2f}     ')
 environment.exit()

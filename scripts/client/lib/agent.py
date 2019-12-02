@@ -24,8 +24,10 @@ class DeepQLearningAgent(Agent):
     def __init__(self, image_size, num_actions):
         super().__init__( num_actions)
         self.batch_size = 150
-        self.epsilon = 0.05
-        self.gamma = 0.9
+        self.epsilon = 1.0 #exploration rate
+        self.epsilon_decay = 0.996
+        self.epsilon_min = 0.01
+        self.gamma = 0.95 #discount rate
         self.image_size = image_size
         self.learn_count = 0
         self.num_actions = num_actions
@@ -73,6 +75,10 @@ class DeepQLearningAgent(Agent):
         if (self.learn_count % 25) == 0:
             self.target_network.weights = self.policy_network.weights
             self.learn_count = 0
+
+        if self.epsilon > self.epsilon_min:
+            self.epsilon *= self.epsilon_decay            
+        
         return
 
     def loadModel(self, num_episodes):
