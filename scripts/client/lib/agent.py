@@ -34,8 +34,8 @@ class DeepQLearningAgent(Agent):
         self.target_network.weights = self.policy_network.weights
         self.replay_memory = ReplayMemory(capacity=50000)    
 
-    def gather_experience(self, last_screenshot, action, reward, new_screenshot):
-        self.replay_memory.write(last_screenshot, action, reward, new_screenshot)
+    def gather_experience(self, last_screenshot, action, reward, new_screenshot, done):
+        self.replay_memory.write(last_screenshot, action, reward, new_screenshot, done)
         return
 
     def choose_action(self, observation):
@@ -48,13 +48,12 @@ class DeepQLearningAgent(Agent):
     def learn(self):
         batch = self.replay_memory.sample(self.batch_size)
 
-        last_states = np.array([exp.start_state for exp in batch])
-        q_last_states = np.array(self.policy_network.compute(last_states))
+        states = np.array([exp.start_state for exp in batch])
+        current_q_values = np.array(self.policy_network.compute(states))
 
         next_states = np.array([exp.end_state for exp in batch])
-        q_next_states = np.array(self.target_network.compute(next_states))
+        next_q_values = np.array(self.target_network.compute(next_states))
 
-        # x_batch = np.zeros([np.shape(batch)[0], self.image_size[0], self.image_size[1], self.image_size[2]])
         x_batch = np.zeros([np.shape(batch)[0], self.image_size[0], self.image_size[1]])
         y_batch = np.zeros([np.shape(batch)[0], self.num_actions])
 
@@ -62,13 +61,16 @@ class DeepQLearningAgent(Agent):
             x_batch[i,:] = batch[i].start_state
             for j in range(self.num_actions):
                 if j == batch[i].action:
-                    y_batch[i,j] = batch[i].reward + self.gamma * np.max(q_next_states[i])
+                    if batch[i].done:
+                        y_batch[i,j] = batch[i].reward
+                    else:
+                        y_batch[i,j] = batch[i].reward + self.gamma * np.max(next_q_values[i])
                 else:
-                    y_batch[i,j] = q_last_states[i,j]                    
+                    y_batch[i,j] = current_q_values[i,j]                    
         self.policy_network.train(train_samples=x_batch, train_labels=y_batch)
 
         self.learn_count +=1
-        if (self.learn_count % 15) == 0:
+        if (self.learn_count % 25) == 0:
             self.target_network.weights = self.policy_network.weights
             self.learn_count = 0
         return

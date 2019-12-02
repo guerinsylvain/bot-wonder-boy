@@ -8,8 +8,8 @@ class ReplayMemory:
         self.__push_count = 0
         self.__capacity = capacity
 
-    def write(self, initial_screenshot, action, reward, new_screenshot):
-        experience = Experience(initial_screenshot, action, reward, new_screenshot)
+    def write(self, initial_screenshot, action, reward, new_screenshot, done):
+        experience = Experience(initial_screenshot, action, reward, new_screenshot, done)
         if len(self.__memory) < self.__capacity:
             self.__memory.append(experience)
         else:
