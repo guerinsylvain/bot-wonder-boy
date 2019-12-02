@@ -66,7 +66,7 @@ while playing do
             done = 1            
         end
 
-        tcp:send(rwd.." "..done)
+        tcp:send(rwd.." "..done.." "..level_position)
         emu.frameadvance()
     end
     emu.frameadvance()
