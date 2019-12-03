@@ -5,16 +5,16 @@ from keras.models import Model, Sequential
 from keras.optimizers import Adam
 
 class Network:
-    def __init__(self, image_size, n_out):
-        self.__image_size = image_size
+    def __init__(self, frameset_size, n_out):
+        self.__frameset_size = frameset_size
         self.__n_out = n_out
         self.__model = self.build_model()
 
     def build_model(self):           
         model = Sequential()
-        model.add(Conv1D(16, kernel_size =(3), activation="relu", input_shape=self.__image_size))
-        model.add(Conv1D(32, kernel_size =(3), activation="relu"))
-        model.add(Conv1D(32, kernel_size =(3), activation="relu"))
+        model.add(Conv2D(16, kernel_size =(3,3), activation="relu", input_shape=self.__frameset_size))
+        model.add(Conv2D(32, kernel_size =(3,3), activation="relu"))
+        model.add(Conv2D(32, kernel_size =(3,3), activation="relu"))
         model.add(Flatten())
         model.add(Dense(128, activation='relu'))         
         model.add(Dense(self.__n_out, init="uniform", activation='relu'))         
@@ -40,5 +40,5 @@ class Network:
         self.__model.save_weights(f'{fileName}.h5')
 
     def train(self, train_samples, train_labels):
-        self.__model.fit(train_samples, train_labels, epochs=15, verbose=0)
+        return self.__model.fit(train_samples, train_labels, epochs=15, verbose=0)
     

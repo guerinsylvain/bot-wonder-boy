@@ -6,12 +6,13 @@ from lib.console import Console
 class Environment:
     def __init__(self, gray_scale: bool):
         self.__console = Console()
-        self.__image_size = (192, 256) if gray_scale else (192, 256, 3)
+        self.__frameset_size = (192, 256, 4) if gray_scale else (192, 256, 3, 4)
         self.__gray_scale = gray_scale
+        self.__frameset = None
 
     @property
-    def image_size(self):
-        return self.__image_size
+    def frameset_size(self):
+        return self.__frameset_size
 
     def start(self):
         _ = self.__console.recv()
@@ -40,5 +41,11 @@ class Environment:
         if self.__gray_scale:
             img = img.convert('L')
 
-        screenshot = np.array(img)
-        return(reward, screenshot, done, level_position)
+        screenshot = np.array(img) 
+
+        if self.__frameset is None:
+            self.__frameset = np.stack([img, img, img, img], axis=2)
+        else:
+            self.__frameset = np.append(self.__frameset[:,:,1:], np.stack([screenshot], axis=2), axis=2)
+
+        return(reward, self.__frameset, done, level_position)
