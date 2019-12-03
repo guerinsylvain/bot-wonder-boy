@@ -18,7 +18,7 @@ class Network:
         model.add(Flatten())
         model.add(Dense(128, activation='relu'))         
         model.add(Dense(self.__n_out, init="uniform", activation='relu'))         
-        model.compile(Adam(lr=.0001), loss='categorical_crossentropy', metrics=['accuracy'])
+        model.compile(Adam(lr=.0001), loss='mse', metrics=['accuracy'])
         print(model.summary())
         return model
 
