@@ -1,12 +1,13 @@
 import numpy as np
 from PIL import ImageGrab
+from PIL.Image import ANTIALIAS
 from lib.console import Console
-
+import random
 
 class Environment:
     def __init__(self, gray_scale: bool):
         self.__console = Console()
-        self.__frameset_size = (192, 256, 4) if gray_scale else (192, 256, 3, 4)
+        self.__frameset_size = (32, 32, 4) if gray_scale else (32, 32, 3, 4)
         self.__gray_scale = gray_scale
         self.__frameset = None
 
@@ -40,6 +41,10 @@ class Environment:
 
         if self.__gray_scale:
             img = img.convert('L')
+
+        img = img.resize((32,32), resample=ANTIALIAS)
+
+        # img.save(f'{random.random()}.png')
 
         screenshot = np.array(img) 
 

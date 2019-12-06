@@ -3,6 +3,7 @@ from keras.layers import Conv1D, Conv2D
 from keras.layers.core import Dense, Flatten
 from keras.models import Model, Sequential
 from keras.optimizers import Adam
+from keras.layers import LeakyReLU
 
 class Network:
     def __init__(self, frameset_size, n_out):
@@ -12,12 +13,17 @@ class Network:
 
     def build_model(self):           
         model = Sequential()
-        model.add(Conv2D(16, kernel_size =(3,3), activation="relu", input_shape=self.__frameset_size))
-        model.add(Conv2D(32, kernel_size =(3,3), activation="relu"))
-        model.add(Conv2D(32, kernel_size =(3,3), activation="relu"))
+        model.add(Conv2D(32, kernel_size =(3,3), input_shape=self.__frameset_size))
+        model.add(LeakyReLU(alpha=0.2))
+        model.add(Conv2D(64, kernel_size =(5,5), strides=2))
+        model.add(LeakyReLU(alpha=0.2))
+        model.add(Conv2D(64, kernel_size =(5,4), strides=4))
+        model.add(LeakyReLU(alpha=0.2))
         model.add(Flatten())
-        model.add(Dense(128, activation='relu'))         
-        model.add(Dense(self.__n_out, init="uniform", activation='relu'))         
+        model.add(Dense(128))     
+        model.add(LeakyReLU(alpha=0.2))    
+        model.add(Dense(self.__n_out, init="uniform"))         
+        model.add(LeakyReLU(alpha=0.2))
         model.compile(Adam(lr=.0001), loss='mse', metrics=['accuracy'])
         print(model.summary())
         return model
