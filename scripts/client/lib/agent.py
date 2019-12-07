@@ -40,12 +40,12 @@ class DeepQLearningAgent(Agent):
         self.replay_memory.write(last_screenshot, action, reward, new_screenshot, done)
         return
 
-    def choose_action(self, observation):
-        if np.random.rand() > self.epsilon:
+    def choose_action(self, observation, use_exploration = True):
+        if use_exploration and np.random.rand() <= self.epsilon:
+            return np.random.choice(range(self.num_actions))               
+        else:
             q_compute = self.policy_network.compute(np.array([observation]))
             return np.argmax(q_compute[0])
-        else:
-            return np.random.choice(range(self.num_actions))               
 
     def learn(self):
         batch = self.replay_memory.sample(self.batch_size)
@@ -81,9 +81,9 @@ class DeepQLearningAgent(Agent):
         
         return history.history['accuracy'][-1]
 
-    def loadModel(self, num_episodes):
-        self.policy_network.load_weights(f'policy_network_weights_{num_episodes}')
-        self.target_network.load_weights(f'policy_network_weights_{num_episodes}')
+    def loadModel(self, file_name):
+        self.policy_network.load_weights(file_name)
+        self.target_network.load_weights(file_name)
         return
 
     def saveModel(self, num_episodes):
