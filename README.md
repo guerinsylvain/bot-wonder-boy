@@ -192,13 +192,18 @@ BUTTON 4 = JUMP
 | 1             | RIGHT + FIRE         |
 | 2             | RIGHT + JUMP         |
 | 3             | RIGHT + FIRE + JUMP  |
+| 4             | LEFT                 |
 
 <a id="reward"></a>
 ### Reward Function
-The score.
-Extra penalty if more that one vitality is lost (will happen when touching a rock by example...).
-A vitality/health equal to 0 is used to detect the end of an episode.
-An episode is a sequence of states and actions until the end of the game.
+-100 if vitality equals 0 (end of episode).  
++100 if end of level reached.  
++20 if vitality has increased.  
+-20 if vitality has decreased more than 1 (will happen when touching a rock by example...).  
++1 if score has increased.  
+-1 otherwise;  
+
+![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/reward.jpg)
 
 <a id="result"></a>
 ## Result
