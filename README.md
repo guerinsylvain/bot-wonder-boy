@@ -203,7 +203,7 @@ BUTTON 4 = JUMP
 +1 if score has increased.  
 -1 otherwise;  
 
-![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/reward.jpg)
+![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/reward.JPG)
 
 <a id="result"></a>
 ## Result
