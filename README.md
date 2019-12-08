@@ -11,7 +11,7 @@ Please visit [youtube](https://www.youtube.com/playlist?list=PLmEQNCYMSVf1jtUfWO
 &nbsp;&nbsp;&nbsp;[Get the sources](#get-sources)  
 &nbsp;&nbsp;&nbsp;[Install and configure Bizhawk](#setup-bizhawk)  
 &nbsp;&nbsp;&nbsp;[Install the CUDA Toolkit 10.0](#setup-cudatoolkit)  
-&nbsp;&nbsp;&nbsp;[Install the NVIDIA CUDA Deep Neural Network library (cuDNN v7.6.4 (September 27, 2019), for CUDA 10.0)](#setup-cudnn)
+&nbsp;&nbsp;&nbsp;[Install the NVIDIA CUDA Deep Neural Network library (cuDNN v7.6.4 (September 27, 2019), for CUDA 10.0)](#setup-cudnn)  
 &nbsp;&nbsp;&nbsp;[Install and configure Python](#setup-python)  
 [How to train the agents](#how-to-train)  
 &nbsp;&nbsp;&nbsp;[Start the agent (python)](#how-to-train-python)  
@@ -24,9 +24,7 @@ Please visit [youtube](https://www.youtube.com/playlist?list=PLmEQNCYMSVf1jtUfWO
 [Deep Q learning](#deep-q-learning)  
 &nbsp;&nbsp;&nbsp;[Algorithm](#deep-q-learning-algo)  
 &nbsp;&nbsp;&nbsp;[Neural Network Gen1](#nn-gen1)  
-[Results](#results)
-<a id="result"></a>
-
+[Results](#results)  
 
 
 <a id="overview"></a>
@@ -232,7 +230,7 @@ BUTTON 4 = JUMP
 <a id="nn-gen1"></a>
 ### Neural Network Gen1
 This neural network (gen1) is intended to spot movements.  
-![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/nn-gen1-jpg)
+![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/nn-gen1.jpg)
 
 <a id="results"></a>
 ## Results
