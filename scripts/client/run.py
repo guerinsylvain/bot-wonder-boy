@@ -45,6 +45,6 @@ for episode in range(num_episodes):
     
     print(f'episode {episode:0>4d}, level position: {position_current_episode:0>2d}/32, episode reward: {rewards_current_episode}, e: {agent.epsilon:.2f}     ')
     positions.append(position_current_episode)  
-    if episode == 100:  
+    if episode == 99:  
         savetxt(f'{episode}.csv', np.array(positions), delimiter=',')
 environment.exit()
