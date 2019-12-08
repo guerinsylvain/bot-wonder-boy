@@ -21,9 +21,12 @@ Please visit [youtube](https://www.youtube.com/playlist?list=PLmEQNCYMSVf1jtUfWO
 &nbsp;&nbsp;&nbsp;[Action Space](#action-space)  
 &nbsp;&nbsp;&nbsp;[Training Action Space](#training-action-space)  
 &nbsp;&nbsp;&nbsp;[Reward Function](#reward-function)  
-[Result](#result)  
-&nbsp;&nbsp;&nbsp;[Random state to action policy](#result-random-policy)  
-&nbsp;&nbsp;&nbsp;[Deep Q learning](#deep-q-learning)  
+[Deep Q learning](#deep-q-learning)  
+&nbsp;&nbsp;&nbsp;[Algorithm](#deep-q-learning-algo)  
+&nbsp;&nbsp;&nbsp;[Neural Network Gen1](#nn-gen1)  
+[Results](#results)
+<a id="result"></a>
+
 
 
 <a id="overview"></a>
@@ -205,14 +208,10 @@ BUTTON 4 = JUMP
 
 ![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/reward.JPG)
 
-<a id="result"></a>
-## Result
-<a id="result-random-policy"></a>
-### Random state to action policy
-As expected an agent with a random state to action policy is not able to finish the first level of the game.
 <a id="deep-q-learning"></a>
-### Deep Q learning (yet to be implemented...)
-
+## Deep Q learning
+<a id="deep-q-learning-algo"></a>
+### Algorithm
 1. Init <em>replay memory</em> capacity
 2. Init the <em>policy network</em> with random weights
 3. Clone the policy network and call it the <em>target network</em>
@@ -230,5 +229,15 @@ As expected an agent with a random state to action policy is not able to finish 
          * Requires a pass to the target network for the next state
       9. Gradient descent updates weights in the policy network to minimize loss
          * After some time steps, weights in the target network are updated to the weights in the policy network
+<a id="nn-gen1"></a>
+### Neural Network Gen1
+This neural network (gen1) is intended to spot movements.  
+![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/nn-gen1-jpg)
+
+<a id="results"></a>
+## Results
+
+
+
       
 
