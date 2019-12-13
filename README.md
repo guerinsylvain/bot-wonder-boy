@@ -1,8 +1,6 @@
 # Reinforcement Learning applied to bot in video games:  
 # Wonder Boy (Sega Master System)
 
-Please visit [youtube](https://www.youtube.com/playlist?list=PLmEQNCYMSVf1jtUfWOSCgW1bvtudmdTrE) for videos (currently in french) explaining this project.
-
 [Overview](#overview)  
 [References](#references)  
 [Testing preview](#testing-preview)  
@@ -30,6 +28,9 @@ Please visit [youtube](https://www.youtube.com/playlist?list=PLmEQNCYMSVf1jtUfWO
 
 <a id="overview"></a>
 ## Overview
+
+Please visit [youtube](https://www.youtube.com/playlist?list=PLmEQNCYMSVf1jtUfWOSCgW1bvtudmdTrE) for videos (currently in french) explaining this project.
+
 I started this project because I had no time to play games anymore.  
 Its ultimate goal is to set up an agent that will be able to finish the Wonder Boy game on the Sega Master System at my place.  
 Here are the main parts of the chosen technical solution (tested on windows 10 64 bits):
