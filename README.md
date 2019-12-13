@@ -29,7 +29,8 @@
 <a id="overview"></a>
 ## Overview
 
-![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/youtube.jpg) Please visit [youtube](https://www.youtube.com/playlist?list=PLmEQNCYMSVf1jtUfWOSCgW1bvtudmdTrE) for videos (currently in french) explaining this project.
+![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/youtube.jpg)  
+Please visit [youtube](https://www.youtube.com/playlist?list=PLmEQNCYMSVf1jtUfWOSCgW1bvtudmdTrE) for videos (currently in french) explaining this project.
 
 I started this project because I had no time to play games anymore.  
 Its ultimate goal is to set up an agent that will be able to finish the Wonder Boy game on the Sega Master System at my place.  
