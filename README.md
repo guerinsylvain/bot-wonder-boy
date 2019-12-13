@@ -4,6 +4,7 @@
 Please visit [youtube](https://www.youtube.com/playlist?list=PLmEQNCYMSVf1jtUfWOSCgW1bvtudmdTrE) for videos (currently in french) explaining this project.
 
 [Overview](#overview)  
+[References](#references)  
 [Testing preview](#testing-preview)  
 [What is LUA](#lua)  
 [Bizhawk](#bizhawk)  
@@ -42,6 +43,14 @@ Here are the main parts of the chosen technical solution (tested on windows 10 6
     * receive observations
     * train the models (dynamic programming, deep neural networks, evolutive neural network with genetic algorithms...)
     * return action(s)
+
+<a id="references"></a>
+## References
+Here are some references that helped me to build this project:
+* [Reinforcement Learning Explained (edx.org)](https://www.edx.org/course/reinforcement-learning-explained-2)
+* [Reinforcement Learning - Introducing Goal Oriented Intelligence (Deeplizard)](https://deeplizard.com/learn/playlist/PLZbbT5o_s2xoWNVdDudn51XM8lOuZ_Njv)
+* [Reinforcement Learning for Street Fighter 2 (Ruochen Liu)](https://github.com/RuochenLiu/StreetFighter2-DeepRL-Model-on-Bizhawk)
+* [Mario AI (Alexander Jung)](https://github.com/aleju/mario-ai)
 
 <a id="testing-preview"></a>
 ## Testing preview
