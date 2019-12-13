@@ -29,7 +29,7 @@
 <a id="overview"></a>
 ## Overview
 
-![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/youtube.jpg)  
+[![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/youtube.jpg)](https://www.youtube.com/playlist?list=PLmEQNCYMSVf1jtUfWOSCgW1bvtudmdTrE)  
 Please visit [youtube](https://www.youtube.com/playlist?list=PLmEQNCYMSVf1jtUfWOSCgW1bvtudmdTrE) for videos (currently in french) explaining this project.
 
 I started this project because I had no time to play games anymore.  
