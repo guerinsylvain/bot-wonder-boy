@@ -17,9 +17,9 @@ class ReplayMemory:
         self.__push_count += 1
 
     def sample(self, batch_size) -> List[Experience]:
-        if len(self.__memory) > 5:
+        if len(self.__memory) > batch_size:
             last_exp = self.__memory[:1][0]
-            sample = random.sample(self.__memory, 5-1)
+            sample = random.sample(self.__memory, batch_size-1)
             sample.append(last_exp)
             return sample
         else:
