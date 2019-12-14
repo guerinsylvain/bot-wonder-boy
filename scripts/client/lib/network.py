@@ -1,5 +1,5 @@
 import keras
-from keras.layers import Conv1D, Conv2D, Conv3D
+from keras.layers import Conv2D
 from keras.layers.core import Dense, Flatten
 from keras.models import Model, Sequential
 from keras.optimizers import Adam
@@ -13,11 +13,11 @@ class Network:
 
     def build_model(self):           
         model = Sequential()
-        model.add(Conv3D(32, kernel_size =(2,2,2), input_shape=self.__frameset_size))     
+        model.add(Conv2D(32, kernel_size =(3,3), padding='same', input_shape=self.__frameset_size))     
         model.add(LeakyReLU(alpha=0.2))
-        model.add(Conv3D(64, kernel_size =(2,2,2), strides=(1,2,2)))
+        model.add(Conv2D(64, kernel_size =(3,3), padding='same' ))
         model.add(LeakyReLU(alpha=0.2))
-        model.add(Conv3D(128, kernel_size =(2,2,2), strides=(1,2,2)))
+        model.add(Conv2D(128, kernel_size =(3,3), padding='same'))
         model.add(LeakyReLU(alpha=0.2))
         model.add(Flatten())
         model.add(Dense(256))     

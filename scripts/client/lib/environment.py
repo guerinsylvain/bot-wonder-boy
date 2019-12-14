@@ -7,7 +7,7 @@ import random
 class Environment:
     def __init__(self, gray_scale: bool):
         self.__console = Console()
-        self.__frameset_size = (4, 64, 64, 3) 
+        self.__frameset_size = (4, 64, 64) 
         self.__frameset = None
 
     @property
@@ -38,6 +38,7 @@ class Environment:
         while img is None:
             img = ImageGrab.grabclipboard()
 
+        img = img.convert('L')
         img = img.resize((64,64), resample=ANTIALIAS)
 
         # img.save(f'{random.random()}.png')
