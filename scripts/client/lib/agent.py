@@ -23,7 +23,7 @@ class Agent:
 class DeepQLearningAgent(Agent):
     def __init__(self, frameset_size, num_actions):
         super().__init__( num_actions)
-        self.batch_size = 150
+        self.batch_size = 200
         self.epsilon = 1.0 #exploration rate
         self.epsilon_decay = 0.996
         self.epsilon_min = 0.01
