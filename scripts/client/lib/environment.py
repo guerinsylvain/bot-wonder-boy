@@ -7,8 +7,7 @@ import random
 class Environment:
     def __init__(self, gray_scale: bool):
         self.__console = Console()
-        self.__frameset_size = (32, 32, 4) if gray_scale else (32, 32, 3, 4)
-        self.__gray_scale = gray_scale
+        self.__frameset_size = (4, 32, 32, 3) 
         self.__frameset = None
 
     @property
@@ -39,18 +38,15 @@ class Environment:
         while img is None:
             img = ImageGrab.grabclipboard()
 
-        if self.__gray_scale:
-            img = img.convert('L')
-
         img = img.resize((32,32), resample=ANTIALIAS)
 
         # img.save(f'{random.random()}.png')
 
-        screenshot = np.array(img) 
-
         if self.__frameset is None:
-            self.__frameset = np.stack([img, img, img, img], axis=2)
+            self.__frameset = np.stack([img, img, img, img])
         else:
-            self.__frameset = np.append(self.__frameset[:,:,1:], np.stack([screenshot], axis=2), axis=2)
+            last_screenshots = self.__frameset[1:,:,:]
+            new_screenshot = np.array(img) 
+            self.__frameset = np.insert(last_screenshots, 3, new_screenshot, axis=0)
 
         return(reward, self.__frameset, done, level_position)
