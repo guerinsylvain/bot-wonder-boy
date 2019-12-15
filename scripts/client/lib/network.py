@@ -46,5 +46,5 @@ class Network:
         self.__model.save(fileName)
 
     def train(self, train_samples, train_labels):
-        return self.__model.fit(train_samples, train_labels, epochs=4, verbose=0)
+        return self.__model.fit(train_samples, train_labels, epochs=3, verbose=0)
     
