@@ -250,8 +250,8 @@ This neural network (gen1) is intended to spot movements.
 This neural network (gen2) is intended to spot movements.  
 Pictures size has been increased from 32x32 to 64x64.  
 The number of filters in the convolution layers has been increased.  
-Usage of keras api has been improved.
-The replay memory returns now the last expertience in every sample.  
+Usage of keras api has been improved.  
+The replay memory returns now the last experience in every sample.  
 ![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/nn-gen2.jpg)
 
 <a id="results"></a>
