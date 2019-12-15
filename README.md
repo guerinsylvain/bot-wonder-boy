@@ -23,6 +23,7 @@
 [Deep Q learning](#deep-q-learning)  
 &nbsp;&nbsp;&nbsp;[Algorithm](#deep-q-learning-algo)  
 &nbsp;&nbsp;&nbsp;[Neural Network Gen1](#nn-gen1)  
+&nbsp;&nbsp;&nbsp;[Neural Network Gen2](#nn-gen2)  
 [Results](#results)  
 
 
@@ -243,14 +244,26 @@ BUTTON 4 = JUMP
 This neural network (gen1) is intended to spot movements.  
 ![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/nn-gen1.jpg)
 
+<a id="nn-gen2"></a>
+### Neural Network Gen2
+This neural network (gen2) is intended to spot movements.
+Pictures size has been increased from 32x32 to 64x64.
+The number of filters in the convolution layers has been increased.
+The replay memory returns now the last expertience in every sample.  
+![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/nn-gen2.jpg)
+
 <a id="results"></a>
 ## Results
 
-| | Gen 0<br>Random<br>No training<br>Run on 100 episodes | Gen 1<br>Frameset<br>Trained on 3000 episodes<br>Run on 100 episodes | Gen 1<br>Frameset<br>Trained on 5000 episodes<br>Run on 100 episodes |
-| -------------------------------- | -------------------- | ------------------------ | ------------------------ |
-| Level Progression (%) - Min      |                 12.5 |                     12.5 |                     12.5 |
-| Level Progression (%) - Max      |                 37.5 |                     81.3 |                     87.5 |
-| Level Progression (%) - Average  |                 16.4 |                     29.3 |                     58.5 |
+Gen 0 implements a random policy.
+The results are gathered after running the model during 100 episodes.
+
+|                                  | Gen 0 | Gen 1 | Gen 1 | Gen 2 | 
+| -------------------------------- | ------| ------| ----- | ----- |
+| Nbr episodes during training     |   N/A |  3000 |  5000 |  1000 |
+| Level Progression (%) - Min      |  12.5 |  12.5 |  12.5 |  18.8 |
+| Level Progression (%) - Max      |  37.5 |  81.3 |  87.5 |  90.6 |
+| Level Progression (%) - Average  |  16.4 |  29.3 |  58.5 |  57.5 |
 
 
 
