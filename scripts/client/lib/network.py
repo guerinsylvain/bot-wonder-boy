@@ -1,7 +1,7 @@
 import keras
 from keras.layers import Conv2D
 from keras.layers.core import Dense, Flatten
-from keras.models import Model, Sequential
+from keras.models import Model, Sequential, load_model
 from keras.optimizers import Adam
 from keras.layers import LeakyReLU
 
@@ -39,12 +39,12 @@ class Network:
     def compute(self, state):
         return self.__model.predict(state)
 
-    def load_weights(self, fileName):
-        self.__model.load_weights(f'{fileName}.h5')
+    def load_model(self, fileName):
+        self.__model = load_model(fileName)
     
-    def save_weights(self, fileName):
-        self.__model.save_weights(f'{fileName}.h5')
+    def save_model(self, fileName):
+        self.__model.save(fileName)
 
     def train(self, train_samples, train_labels):
-        return self.__model.fit(train_samples, train_labels, epochs=5, verbose=0)
+        return self.__model.fit(train_samples, train_labels, epochs=4, verbose=0)
     

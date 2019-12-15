@@ -8,10 +8,12 @@ print(f'starting training')
 accuracy = 0
 num_actions = 5
 num_episodes = 100000
-environment = Environment(gray_scale = True)
+environment = Environment()
 agent = DeepQLearningAgent(environment.frameset_size, num_actions)
+agent.saveModel(0)
+agent.loadModel('policy_network_weights_0.h5')
 
-for episode in range(num_episodes):
+for episode in range(1, num_episodes):
 
     done = 0
     rewards_current_episode = 0

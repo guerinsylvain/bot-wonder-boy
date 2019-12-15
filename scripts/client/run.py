@@ -9,7 +9,7 @@ print(f'starting run')
 accuracy = 0
 num_actions = 5
 num_episodes = 100
-environment = Environment(gray_scale = True)
+environment = Environment()
 agent = DeepQLearningAgent(environment.frameset_size, num_actions)
 print(sys.argv[1])
 agent.loadModel(sys.argv[1])

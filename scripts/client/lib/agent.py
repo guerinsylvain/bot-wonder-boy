@@ -82,11 +82,11 @@ class DeepQLearningAgent(Agent):
         return history.history['accuracy'][-1]
 
     def loadModel(self, file_name):
-        self.policy_network.load_weights(file_name)
-        self.target_network.load_weights(file_name)
+        self.policy_network.load_model(file_name)
+        self.target_network.load_model(file_name)
         return
 
     def saveModel(self, num_episodes):
-        self.policy_network.save_weights(f'policy_network_weights_{num_episodes}')
+        self.policy_network.save_model(f'policy_network_weights_{num_episodes}.h5')
         return
 

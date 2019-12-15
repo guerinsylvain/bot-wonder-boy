@@ -5,7 +5,7 @@ from lib.console import Console
 import random
 
 class Environment:
-    def __init__(self, gray_scale: bool):
+    def __init__(self):
         self.__console = Console()
         self.__frameset_size = (4, 64, 64) 
         self.__frameset = None
