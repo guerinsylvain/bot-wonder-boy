@@ -260,12 +260,13 @@ The replay memory returns now the last experience in every sample.
 Gen 0 implements a random policy.
 The results are gathered after running the model during 100 episodes.
 
-|                                  | Gen 0 | Gen 1 | Gen 1 | Gen 2 | 
-| -------------------------------- | ------| ------| ----- | ----- |
-| Nbr episodes during training     |   N/A |  3000 |  5000 |  1000 |
-| Level Progression (%) - Min      |  12.5 |  12.5 |  12.5 |  18.8 |
-| Level Progression (%) - Max      |  37.5 |  81.3 |  87.5 |  90.6 |
-| Level Progression (%) - Average  |  16.4 |  29.3 |  58.5 |  57.5 |
+|                                  | Gen 0 | Gen 1 | Gen 1 | Gen 2 | Gen 2 | Gen 2 | 
+| -------------------------------- | ------| ------| ----- | ----- | ----- | ----- |
+| Nbr episodes during training     |   N/A |  3000 |  5000 |  1000 |  2000 |  3000 |
+| Level Progression (%) - Min      |  12.5 |  12.5 |  12.5 |  18.8 |  12.5 |  18.8 |
+| Level Progression (%) - Max      |  37.5 |  81.3 |  87.5 |  90.6 |  96.9 | 100.0 |
+| Level Progression (%) - Average  |  16.4 |  29.3 |  58.5 |  57.5 |  73.0 |  66.1 |
+| End of level (%)                 |   0.0 |   0.0 |   0.0 |   0.0 |   0.0 |   9.0 |
 
 
 
