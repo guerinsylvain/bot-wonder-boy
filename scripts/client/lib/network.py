@@ -6,10 +6,11 @@ from keras.optimizers import Adam
 from keras.layers import LeakyReLU
 
 class Network:
-    def __init__(self, frameset_size, n_out):
+    def __init__(self, frameset_size, n_out, batch_size):
         self.__frameset_size = frameset_size
         self.__n_out = n_out
         self.__model = self.build_model()
+        self.__batch_size = batch_size
 
     def build_model(self):           
         model = Sequential()
@@ -46,5 +47,5 @@ class Network:
         self.__model.save(fileName)
 
     def train(self, train_samples, train_labels):
-        return self.__model.fit(train_samples, train_labels, epochs=5, verbose=0)
+        return self.__model.fit(train_samples, train_labels, epochs=5, verbose=0, batch_size=self.__batch_size)
     

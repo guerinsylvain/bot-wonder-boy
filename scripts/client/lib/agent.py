@@ -23,7 +23,7 @@ class Agent:
 class DeepQLearningAgent(Agent):
     def __init__(self, frameset_size, num_actions):
         super().__init__( num_actions)
-        self.batch_size = 200
+        self.sample_size = 200
         self.epsilon = 1.0 #exploration rate
         self.epsilon_decay = 0.996
         self.epsilon_min = 0.01
@@ -31,8 +31,8 @@ class DeepQLearningAgent(Agent):
         self.frameset_size = frameset_size
         self.learn_count = 0
         self.num_actions = num_actions
-        self.policy_network = Network(frameset_size, num_actions)
-        self.target_network = Network(frameset_size, num_actions)
+        self.policy_network = Network(frameset_size, num_actions, batch_size = self.sample_size)
+        self.target_network = Network(frameset_size, num_actions, batch_size = self.sample_size)
         self.target_network.weights = self.policy_network.weights
         self.replay_memory = ReplayMemory(capacity=50000)    
 
@@ -48,7 +48,7 @@ class DeepQLearningAgent(Agent):
             return np.argmax(q_compute[0])
 
     def learn(self):
-        batch = self.replay_memory.sample(self.batch_size)
+        batch = self.replay_memory.sample(self.sample_size)
 
         states = np.array([exp.start_state for exp in batch])
         current_q_values = np.array(self.policy_network.compute(states))
