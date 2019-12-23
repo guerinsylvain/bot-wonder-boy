@@ -24,6 +24,7 @@ class DeepQLearningAgent(Agent):
     def __init__(self, frameset_size, num_actions):
         super().__init__( num_actions)
         self.sample_size = 200
+        self.num_epochs = 5
         self.epsilon = 1.0 #exploration rate
         self.epsilon_decay = 0.996
         self.epsilon_min = 0.01
@@ -69,7 +70,14 @@ class DeepQLearningAgent(Agent):
                         y_batch[i,j] = batch[i].reward + self.gamma * np.max(next_q_values[i])
                 else:
                     y_batch[i,j] = current_q_values[i,j]                    
-        history = self.policy_network.train(train_samples=x_batch, train_labels=y_batch)
+        history = self.policy_network.train(train_samples=x_batch, train_labels=y_batch, num_epochs=self.num_epochs)
+        accuracy = history.history['accuracy'][-1]
+        
+        if accuracy < 0.925 and self.num_epochs < 15:
+            self.num_epochs +=1
+
+        if accuracy > 0.95 and self.num_epochs > 1:
+            self.num_epochs -=1        
 
         self.learn_count +=1
         if (self.learn_count % 25) == 0:
@@ -79,7 +87,7 @@ class DeepQLearningAgent(Agent):
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay            
         
-        return history.history['accuracy'][-1]
+        return accuracy
 
     def loadModel(self, file_name):
         self.policy_network.load_model(file_name)
