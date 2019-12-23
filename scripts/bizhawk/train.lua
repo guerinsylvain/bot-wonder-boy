@@ -42,11 +42,17 @@ while playing do
             action, status, partial = tcp:receive('*l')           
         end
 
-        -- repeat the action on the next 20 frames
-        for i = 40,1,-1 
+        -- repeat the action on the next 30 frames (half a second)
+        for i = 30,1,-1 
         do 
             actions.process(tonumber(action)); 
             emu.frameadvance()
+            vitality = mem.get_vitality()
+            level_position = mem.get_level_position()
+            if vitality == 0 or level_position == 32 then
+                print("exiting loop"..i)
+                break
+            end
         end        
 
         client.screenshottoclipboard()
@@ -67,9 +73,11 @@ while playing do
         end
 
         tcp:send(rwd.." "..done.." "..level_position)
-        emu.frameadvance()
+        if inGame == true then
+            emu.frameadvance()
+        end
     end
-    emu.frameadvance()
+    -- emu.frameadvance()
 end
 
 tcp:close()
