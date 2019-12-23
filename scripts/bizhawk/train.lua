@@ -12,6 +12,7 @@ local playing = true
 local inGame = false
 local vitality = 0
 local level_position = 0
+local is_dead = 0
 
 while playing do
 
@@ -24,6 +25,7 @@ while playing do
         emu.frameadvance()
         vitality = mem.get_vitality()
         level_position = mem.get_level_position()
+        is_dead = mem.get_is_dead()
         reward.init(mem.get_score(), vitality)
         client.screenshottoclipboard()
     end
@@ -49,18 +51,16 @@ while playing do
             emu.frameadvance()
             vitality = mem.get_vitality()
             level_position = mem.get_level_position()
-            if vitality == 0 or level_position == 32 then
-                print("exiting loop"..i)
+            is_dead = mem.get_is_dead()
+            if vitality == 0 or level_position == 32 or is_dead > 0 then
                 break
             end
         end        
 
         client.screenshottoclipboard()
-        vitality = mem.get_vitality()
-        level_position = mem.get_level_position()
-        rwd = reward.get_reward(mem.get_score(), vitality, level_position) 
+        rwd = reward.get_reward(mem.get_score(), vitality, level_position, is_dead) 
 
-        if vitality == 0 then
+        if vitality == 0 or is_dead > 0 then
             print("lost")
             inGame = false
             done = 1            
