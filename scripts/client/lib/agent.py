@@ -35,7 +35,7 @@ class DeepQLearningAgent(Agent):
         self.policy_network = Network(frameset_size, num_actions, batch_size = self.sample_size)
         self.target_network = Network(frameset_size, num_actions, batch_size = self.sample_size)
         self.target_network.weights = self.policy_network.weights
-        self.target_network_update_rate = 10
+        self.target_network_update_rate = 5
         self.replay_memory = ReplayMemory(capacity=50000)    
 
     def gather_experience(self, last_screenshot, action, reward, new_screenshot, done):
