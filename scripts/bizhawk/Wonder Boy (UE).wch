@@ -3,6 +3,7 @@ SystemID SMS
 0121	b	h	0	Main RAM	Score x 10
 0122	b	h	0	Main RAM	Score x 1000
 0123	b	h	0	Main RAM	Score x 100000
-009C	b	u	0	Main RAM	Is Dead?
 012C	b	u	0	Main RAM	Position [0-32]
+009C	b	u	0	Main RAM	Is Dead?
+0194	b	u	0	Main RAM	Is Dead 2?
 
