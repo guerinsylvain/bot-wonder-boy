@@ -7,7 +7,7 @@ import random
 class Environment:
     def __init__(self):
         self.__console = Console()
-        self.__frameset_size = (4, 64, 64) 
+        self.__frameset_size = (4, 64, 85) 
         self.__frameset = None
 
     @property
@@ -39,12 +39,13 @@ class Environment:
             img = ImageGrab.grabclipboard()
 
         img = img.convert('L')
-        img = img.resize((64,64), resample=ANTIALIAS)
+        img = img.resize((85,64), resample=ANTIALIAS)
 
         # img.save(f'{random.random()}.png')
 
         if self.__frameset is None:
-            self.__frameset = np.stack([img, img, img, img])
+            img_array = np.array(img)
+            self.__frameset = np.stack([img_array, img_array, img_array, img_array])
         else:
             last_screenshots = self.__frameset[1:,:,:]
             new_screenshot = np.array(img) 
