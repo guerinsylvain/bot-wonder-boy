@@ -24,7 +24,7 @@ class DeepQLearningAgent(Agent):
     def __init__(self, frameset_size, num_actions):
         super().__init__( num_actions)
         self.sample_size = 200
-        self.num_epochs = 5
+        self.num_epochs = 1
         self.epsilon = 1.0 #exploration rate
         self.epsilon_decay = 0.996
         self.epsilon_min = 0.01
@@ -35,6 +35,7 @@ class DeepQLearningAgent(Agent):
         self.policy_network = Network(frameset_size, num_actions, batch_size = self.sample_size)
         self.target_network = Network(frameset_size, num_actions, batch_size = self.sample_size)
         self.target_network.weights = self.policy_network.weights
+        self.target_network_update_rate = 10
         self.replay_memory = ReplayMemory(capacity=50000)    
 
     def gather_experience(self, last_screenshot, action, reward, new_screenshot, done):
@@ -72,15 +73,9 @@ class DeepQLearningAgent(Agent):
                     y_batch[i,j] = current_q_values[i,j]                    
         history = self.policy_network.train(train_samples=x_batch, train_labels=y_batch, num_epochs=self.num_epochs)
         accuracy = history.history['accuracy'][-1]
-        
-        if accuracy < 0.925 and self.num_epochs < 15:
-            self.num_epochs +=1
-
-        if accuracy > 0.95 and self.num_epochs > 1:
-            self.num_epochs -=1        
 
         self.learn_count +=1
-        if (self.learn_count % 25) == 0:
+        if (self.learn_count % self.target_network_update_rate) == 0:
             self.target_network.weights = self.policy_network.weights
             self.learn_count = 0
 
