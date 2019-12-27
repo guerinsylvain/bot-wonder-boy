@@ -6,7 +6,8 @@ function M.get_vitality()
 end
 
 function M.get_is_dead()
-    return memory.read_u8(0x009C, "Main RAM") + memory.read_u8(0x0194, "Main RAM")
+    -- return memory.read_u8(0x009C, "Main RAM") + memory.read_u8(0x0194, "Main RAM")
+    return 0
 end
 
 function M.get_level_position()
