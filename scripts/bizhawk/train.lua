@@ -26,7 +26,7 @@ while playing do
         vitality = mem.get_vitality()
         level_position = mem.get_level_position()
         is_dead = mem.get_is_dead()
-        reward.init(mem.get_score(), vitality)
+        reward.init(mem.get_score(), vitality, level_position)
         client.screenshottoclipboard()
     end
 

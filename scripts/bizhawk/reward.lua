@@ -3,10 +3,12 @@ local M = {}
 
 local previous_score = 0
 local previous_vitality = 0
+local previous_level_position = 0
 
-function M.init(score, vitality)
+function M.init(score, vitality, level_position)
     previous_score = score
     previous_vitality = vitality
+    previous_level_position = level_position
 end
 
 function M.get_reward(score, vitality, level_position, is_dead) 
@@ -15,6 +17,7 @@ function M.get_reward(score, vitality, level_position, is_dead)
     if vitality == 0 or is_dead > 0 then
         previous_vitality = vitality
         previous_score = score
+        previous_level_position = level_position
         return -100
     end
 
@@ -22,6 +25,7 @@ function M.get_reward(score, vitality, level_position, is_dead)
     if level_position == (32 * 255) then
         previous_vitality = vitality
         previous_score = score
+        previous_level_position = level_position
         return 100
     end 
 
@@ -29,6 +33,7 @@ function M.get_reward(score, vitality, level_position, is_dead)
     if vitality > previous_vitality then
         previous_vitality = vitality
         previous_score = score
+        previous_level_position = level_position
         return 20
     end
 
@@ -36,6 +41,7 @@ function M.get_reward(score, vitality, level_position, is_dead)
     if (previous_vitality-vitality) > 1 then
         previous_vitality = vitality
         previous_score = score
+        previous_level_position = level_position
         return -20
     end
 
@@ -43,14 +49,23 @@ function M.get_reward(score, vitality, level_position, is_dead)
     if score > previous_score then
         previous_vitality = vitality
         previous_score = score
+        previous_level_position = level_position
         return 1
     end
 
-    -- A small negative reward of -1 is given for any other action. 
-    -- Giving this constant negative reward will prevent the agent from remaining in one area 
+    -- A negative reward of -5 to prevent the agent from remaining in one area 
     -- and will ultimately prevent it from dying due to running out of time in a level
+    if previous_level_position == level_position then
+        previous_vitality = vitality
+        previous_score = score
+        previous_level_position = level_position
+        return -5
+    end 
+
+    -- A small negative reward of -1 is given for any other action. 
     previous_vitality = vitality
     previous_score = score
+    previous_level_position = level_position
     return -1
         
 end
