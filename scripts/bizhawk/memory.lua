@@ -11,7 +11,7 @@ function M.get_is_dead()
 end
 
 function M.get_level_position()
-    return memory.read_u8(0x012C, "Main RAM")
+    return (memory.read_u8(0x012C, "Main RAM") * 255) + memory.read_u8(0x012B, "Main RAM")
 end
 
 function M.get_score()

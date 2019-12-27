@@ -39,10 +39,10 @@ for episode in range(1, num_episodes):
         last_frameset = frameset
         rewards_current_episode += reward    
         position_current_episode = max(position_current_episode, level_position)
-        print(f'episode {episode:0>4d}, level position: {position_current_episode:0>2d}/32, episode reward: {rewards_current_episode}, e: {agent.epsilon:.2f}, acc:{accuracy:.3f}, epochs:{agent.num_epochs:0>2d}     ', end = '\r')
+        print(f'episode {episode:0>4d}, level position: {(position_current_episode/81.60):.2f}, episode reward: {rewards_current_episode}, e: {agent.epsilon:.2f}, acc:{accuracy:.3f}     ', end = '\r')
     
     if (episode % 100) == 0:
         agent.saveModel(episode)
 
-    print(f'episode {episode:0>4d}, level position: {position_current_episode:0>2d}/32, episode reward: {rewards_current_episode}, e: {agent.epsilon:.2f}, acc:{accuracy:.3f}, epochs:{agent.num_epochs:0>2d}     ')
+    print(f'episode {episode:0>4d}, level position: {(position_current_episode/81.60):.2f}, episode reward: {rewards_current_episode}, e: {agent.epsilon:.2f}, acc:{accuracy:.3f}     ')
 environment.exit()

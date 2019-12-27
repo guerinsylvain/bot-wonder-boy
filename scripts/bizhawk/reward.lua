@@ -19,7 +19,7 @@ function M.get_reward(score, vitality, level_position, is_dead)
     end
 
     -- A large positive reward of +100 is given for reaching the end of a level
-    if level_position == 32 then
+    if level_position == (32 * 255) then
         previous_vitality = vitality
         previous_score = score
         return 100
