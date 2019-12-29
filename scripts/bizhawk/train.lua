@@ -12,13 +12,14 @@ local playing = true
 local inGame = false
 local vitality = 0
 local level_position = 0
+local LEVEL_POSITION_END = 8160
 local is_dead = 0
 
 while playing do
 
     -- Reset game
     if inGame == false then
-        console.clear()
+        -- console.clear()
         print("start new episode")
         savestate.load('train.State')
         inGame = true
@@ -52,7 +53,7 @@ while playing do
             vitality = mem.get_vitality()
             level_position = mem.get_level_position()
             is_dead = mem.get_is_dead()
-            if vitality == 0 or level_position == 32 or is_dead > 0 then
+            if vitality == 0 or level_position >= LEVEL_POSITION_END or is_dead > 0 then
                 break
             end
         end        
@@ -66,7 +67,7 @@ while playing do
             done = 1            
         end
 
-        if level_position == 32 then
+        if level_position >= LEVEL_POSITION_END then
             print("won")
             inGame = false
             done = 1            
