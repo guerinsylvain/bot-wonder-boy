@@ -1,19 +1,27 @@
 import keras
-from keras.layers import Conv2D
+from keras.layers import Conv2D, Concatenate
 from keras.layers.core import Dense, Flatten
 from keras.models import Model, Sequential, load_model
 from keras.optimizers import Adam
 from keras.layers import LeakyReLU
 
 class Network:
-    def __init__(self, frameset_size, n_out, batch_size):
+    def __init__(self, frameset_size, n_out, batch_size, last_actions_size):
         self.__frameset_size = frameset_size
         self.__n_out = n_out
-        self.__model = self.build_model()
         self.__batch_size = batch_size
+        self.__last_actions_size = last_actions_size
+        self.__model = self.build_model()
 
-    def build_model(self):           
-        model = Sequential()
+    def build_actions_model(self):
+        model = Sequential(name='last_actions')
+        model.add(Dense(32, input_shape=(self.__last_actions_size)))     
+        model.add(LeakyReLU(alpha=0.5)) 
+        model.add(Flatten())
+        return model
+
+    def build_movements_model(self):
+        model = Sequential(name='frameset')
         model.add(Conv2D(32, kernel_size =(3,3), padding='same', input_shape=self.__frameset_size))     
         model.add(LeakyReLU(alpha=0.5))
         model.add(Conv2D(64, kernel_size =(3,3), padding='same' ))
@@ -21,10 +29,19 @@ class Network:
         model.add(Conv2D(128, kernel_size =(3,3), padding='same'))
         model.add(LeakyReLU(alpha=0.5))
         model.add(Flatten())
-        model.add(Dense(256))     
-        model.add(LeakyReLU(alpha=0.5))    
-        model.add(Dense(self.__n_out, init="uniform"))         
-        model.add(LeakyReLU(alpha=0.5))
+        return model        
+
+    def build_model(self):           
+        actions_model = self.build_actions_model()
+        movement_model = self.build_movements_model()
+        
+        combinedInput = Concatenate()([actions_model.output, movement_model.output])
+        x = Dense(256)(combinedInput)
+        x = LeakyReLU(alpha=0.2)(x)
+        x = Dense(self.__n_out, init="uniform")(x)
+        x = LeakyReLU(alpha=0.2)(x)
+        model = Model(inputs = [actions_model.input, movement_model.input], outputs = x)
+
         model.compile(Adam(lr=.0001), loss='mse', metrics=['accuracy'])
         print(model.summary())
         return model

@@ -19,7 +19,7 @@ while playing do
 
     -- Reset game
     if inGame == false then
-        -- console.clear()
+        console.clear()
         print("start new episode")
         savestate.load('train.State')
         inGame = true
@@ -73,7 +73,7 @@ while playing do
             done = 1            
         end
 
-        tcp:send(rwd.." "..done.." "..level_position)
+        tcp:send(rwd.." "..done.." "..level_position.." "..action)
         if inGame == true then
             emu.frameadvance()
         end

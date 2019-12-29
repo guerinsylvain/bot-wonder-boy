@@ -9,10 +9,33 @@ class Environment:
         self.__console = Console()
         self.__frameset_size = (4, 64, 85) 
         self.__frameset = None
+        self.__last_actions = None
+        self.__hot_encode_action_size = (4, 4)        
 
     @property
     def frameset_size(self):
         return self.__frameset_size
+
+    @property
+    def hot_encode_action_size(self):
+        return self.__hot_encode_action_size     
+
+    def hot_encode_action(self, action):
+        # bit 1: JUMP 
+        # bit 2: FIRE/ACC
+        # bit 3: RIGHT
+        # but 4: LEFT
+        
+        if action == 0: # RIGHT
+            return np.array([0,0,1,0,])
+        if action == 1: # RIGHT + FIRE
+            return np.array([0,1,1,0,])            
+        if action == 2: # RIGHT + JUMP
+            return np.array([1,0,1,0,])                        
+        if action == 3: # RIGHT + JUMP + FIRE
+            return np.array([1,1,1,0,])              
+        if action == 4: # LEFT
+            return np.array([0,0,0,1,])           
 
     def start(self):
         _ = self.__console.recv()
@@ -29,6 +52,7 @@ class Environment:
         reward = int(feedback[0])
         done = int(feedback[1])
         level_position = int(feedback[2])
+        action = self.hot_encode_action(int(feedback[3]))
 
         # get screenshot as a [192,256,3] array with the last dimension representing RGB
         # this is the actual resolution of the game in the emulator
@@ -51,4 +75,10 @@ class Environment:
             new_screenshot = np.array(img) 
             self.__frameset = np.insert(last_screenshots, 3, new_screenshot, axis=0)
 
-        return(reward, self.__frameset, done, level_position)
+        if self.__last_actions is None:
+            self.__last_actions = np.stack([action, action, action, action])
+        else:
+            actions = self.__last_actions[1:]
+            self.__last_actions = np.insert(actions, 3, action, axis=0)            
+
+        return(reward, self.__frameset, done, level_position, self.__last_actions)
