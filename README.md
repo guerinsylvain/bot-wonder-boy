@@ -24,6 +24,7 @@
 &nbsp;&nbsp;&nbsp;[Algorithm](#deep-q-learning-algo)  
 &nbsp;&nbsp;&nbsp;[Neural Network Gen1](#nn-gen1)  
 &nbsp;&nbsp;&nbsp;[Neural Network Gen2](#nn-gen2)  
+&nbsp;&nbsp;&nbsp;[Neural Network Gen2.1](#nn-gen2.1)  
 [Results](#results)  
 
 
@@ -215,6 +216,7 @@ BUTTON 4 = JUMP
 +20 if vitality has increased.  
 -20 if vitality has decreased more than 1 (will happen when touching a rock by example...).  
 +1 if score has increased.  
+-5 if position in level has not increased.
 -1 otherwise;  
 
 ![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/reward.JPG)
@@ -254,19 +256,30 @@ Usage of keras api has been improved.
 The replay memory returns now the last experience in every sample.  
 ![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/nn-gen2.jpg)
 
+<a id="nn-gen2.1"></a>
+### Neural Network Gen2.1
+Some hyperparameters have been fine tuned:  
+* the batch size is now equal to the replay memory sample size during training  
+* number of epochs decreased to 1 during training  
+* image ratio fixed from 64x64 to 64x85  
+* the target network weights are now synchronized with the policy framework weights every 5 steps (instead of 25 previously)  
+* more precision added in the reading of the position in the level  
+* reward rule updated: penalty given when position in the level stays the same  
+* leaky relu alpha parameter updated  
+
 <a id="results"></a>
 ## Results
 
 Gen 0 implements a random policy.
 The results are gathered after running the model during 100 episodes.
 
-|                                  | Gen 0 | Gen 1 | Gen 1 | Gen 2 | Gen 2 | Gen 2 | 
-| -------------------------------- | ------| ------| ----- | ----- | ----- | ----- |
-| Nbr episodes during training     |   N/A |  3000 |  5000 |  1000 |  2000 |  3000 |
-| Level Progression (%) - Min      |  12.5 |  12.5 |  12.5 |  18.8 |  12.5 |  18.8 |
-| Level Progression (%) - Max      |  37.5 |  81.3 |  87.5 |  90.6 |  96.9 | 100.0 |
-| Level Progression (%) - Average  |  16.4 |  29.3 |  58.5 |  57.5 |  73.0 |  66.1 |
-| End of level (%)                 |   0.0 |   0.0 |   0.0 |   0.0 |   0.0 |   9.0 |
+|                                  | Gen 0 | Gen 1 | Gen 1 | Gen 2 | Gen 2 | Gen 2 | Gen 2.1 | 
+| -------------------------------- | ------| ------| ----- | ----- | ----- | ----- | ------- |
+| Nbr episodes during training     |   N/A |  3000 |  5000 |  1000 |  2000 |  3000 |    7900 |
+| Level Progression (%) - Min      |  12.5 |  12.5 |  12.5 |  18.8 |  12.5 |  18.8 |    14.3 |
+| Level Progression (%) - Max      |  37.5 |  81.3 |  87.5 |  90.6 |  96.9 | 100.0 |   100.0 |
+| Level Progression (%) - Average  |  16.4 |  29.3 |  58.5 |  57.5 |  73.0 |  66.1 |    57.6 |
+| End of level (%)                 |   0.0 |   0.0 |   0.0 |   0.0 |   0.0 |   9.0 |      21 |
 
 
 
