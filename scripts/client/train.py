@@ -39,6 +39,7 @@ for episode in range(1, num_episodes):
         agent.gather_experience(last_frameset, last_last_actions, action, reward, frameset, last_actions, done)
         accuracy = agent.learn()
         last_frameset = frameset
+        last_last_actions = last_actions
         rewards_current_episode += reward    
         position_current_episode = max(position_current_episode, level_position)
         print(f'episode {episode:0>4d}, level position: {(position_current_episode/81.60):.2f}, episode reward: {rewards_current_episode}, e: {agent.epsilon:.2f}, acc:{accuracy:.3f}     ', end = '\r')
