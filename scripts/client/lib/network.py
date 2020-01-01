@@ -22,11 +22,11 @@ class Network:
 
     def build_movements_model(self):
         model = Sequential(name='frameset')
-        model.add(Conv2D(32, kernel_size =(3,3), padding='same', input_shape=self.__frameset_size))     
+        model.add(Conv2D(32, kernel_size =(3,3), input_shape=self.__frameset_size))     
         model.add(LeakyReLU(alpha=0.5))
-        model.add(Conv2D(64, kernel_size =(3,3), padding='same' ))
+        model.add(Conv2D(64, kernel_size =(3,3) ))
         model.add(LeakyReLU(alpha=0.5))
-        model.add(Conv2D(64, kernel_size =(3,3), padding='same'))
+        model.add(Conv2D(64, kernel_size =(3,3), strides = 2))
         model.add(LeakyReLU(alpha=0.5))
         model.add(Flatten())
         print(model.summary())
