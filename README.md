@@ -25,6 +25,7 @@
 &nbsp;&nbsp;&nbsp;[Neural Network Gen1](#nn-gen1)  
 &nbsp;&nbsp;&nbsp;[Neural Network Gen2](#nn-gen2)  
 &nbsp;&nbsp;&nbsp;[Neural Network Gen2.1](#nn-gen2.1)  
+&nbsp;&nbsp;&nbsp;[Neural Network Gen3](#nn-gen3)  
 [Results](#results)  
 
 
@@ -267,19 +268,24 @@ Some hyperparameters have been fine tuned:
 * reward rule updated: penalty given when position in the level stays the same  
 * leaky relu alpha parameter updated  
 
+<a id="nn-gen3"></a>
+### Neural Network Gen3
+A branch receiving the last 4 taken actions has been added to the neural network:  
+![](https://github.com/guerinsylvain/bot-wonder-boy/blob/master/images/nn-gen3.jpg)  
+
 <a id="results"></a>
 ## Results
 
 Gen 0 implements a random policy.
 The results are gathered after running the model during 100 episodes.
 
-|                                  | Gen 0 | Gen 1 | Gen 1 | Gen 2 | Gen 2 | Gen 2 | Gen 2.1 | 
-| -------------------------------- | ------| ------| ----- | ----- | ----- | ----- | ------- |
-| Nbr episodes during training     |   N/A |  3000 |  5000 |  1000 |  2000 |  3000 |    7900 |
-| Level Progression (%) - Min      |  12.5 |  12.5 |  12.5 |  18.8 |  12.5 |  18.8 |    14.3 |
-| Level Progression (%) - Max      |  37.5 |  81.3 |  87.5 |  90.6 |  96.9 | 100.0 |   100.0 |
-| Level Progression (%) - Average  |  16.4 |  29.3 |  58.5 |  57.5 |  73.0 |  66.1 |    57.6 |
-| End of level (%)                 |   0.0 |   0.0 |   0.0 |   0.0 |   0.0 |   9.0 |      21 |
+|                                  | Gen 0 | Gen 1 | Gen 1 | Gen 2 | Gen 2 | Gen 2 | Gen 2.1 | Gen 3 | 
+| -------------------------------- | ------| ------| ----- | ----- | ----- | ----- | ------- |------ |
+| Nbr episodes during training     |   N/A |  3000 |  5000 |  1000 |  2000 |  3000 |    7900 |  9800 |
+| Level Progression (%) - Min      |  12.5 |  12.5 |  12.5 |  18.8 |  12.5 |  18.8 |    14.3 |  14.4 |
+| Level Progression (%) - Max      |  37.5 |  81.3 |  87.5 |  90.6 |  96.9 | 100.0 |   100.0 | 100.0 |
+| Level Progression (%) - Average  |  16.4 |  29.3 |  58.5 |  57.5 |  73.0 |  66.1 |    57.6 |  69.6 |
+| End of level (%)                 |   0.0 |   0.0 |   0.0 |   0.0 |   0.0 |   9.0 |      21 |    37 |
 
 
 
