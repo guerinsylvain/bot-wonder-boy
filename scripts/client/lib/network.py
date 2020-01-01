@@ -26,9 +26,10 @@ class Network:
         model.add(LeakyReLU(alpha=0.5))
         model.add(Conv2D(64, kernel_size =(3,3), padding='same' ))
         model.add(LeakyReLU(alpha=0.5))
-        model.add(Conv2D(128, kernel_size =(3,3), padding='same'))
+        model.add(Conv2D(64, kernel_size =(3,3), padding='same'))
         model.add(LeakyReLU(alpha=0.5))
         model.add(Flatten())
+        print(model.summary())
         return model        
 
     def build_model(self):           

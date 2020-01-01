@@ -7,7 +7,7 @@ import random
 class Environment:
     def __init__(self):
         self.__console = Console()
-        self.__frameset_size = (4, 64, 85) 
+        self.__frameset_size = (32, 43, 4) 
         self.__frameset = None
         self.__last_actions = None
         self.__hot_encode_action_size = (4, 4)        
@@ -63,17 +63,24 @@ class Environment:
             img = ImageGrab.grabclipboard()
 
         img = img.convert('L')
-        img = img.resize((85,64), resample=ANTIALIAS)
+        img = img.resize((43,32), resample=ANTIALIAS)
 
         # img.save(f'{random.random()}.png')
 
+        # if self.__frameset is None:
+        #     img_array = np.array(img)
+        #     self.__frameset = np.stack([img_array, img_array, img_array, img_array])
+        # else:
+        #     last_screenshots = self.__frameset[1:,:,:]
+        #     new_screenshot = np.array(img) 
+        #     self.__frameset = np.insert(last_screenshots, 3, new_screenshot, axis=0)
+
         if self.__frameset is None:
             img_array = np.array(img)
-            self.__frameset = np.stack([img_array, img_array, img_array, img_array])
+            self.__frameset = np.stack([img_array, img_array, img_array, img_array], axis=2)
         else:
-            last_screenshots = self.__frameset[1:,:,:]
-            new_screenshot = np.array(img) 
-            self.__frameset = np.insert(last_screenshots, 3, new_screenshot, axis=0)
+            img_array = np.array(img)
+            self.__frameset = np.append(self.__frameset[:,:,1:], np.stack([img_array], axis=2), axis=2)
 
         if self.__last_actions is None:
             self.__last_actions = np.stack([action, action, action, action])
