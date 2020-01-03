@@ -26,7 +26,7 @@
 &nbsp;&nbsp;&nbsp;[Neural Network Gen2](#nn-gen2)  
 &nbsp;&nbsp;&nbsp;[Neural Network Gen2.1](#nn-gen2.1)  
 &nbsp;&nbsp;&nbsp;[Neural Network Gen3](#nn-gen3)  
-&nbsp;&nbsp;&nbsp;[Neural Network Gen3](#nn-gen3.1)  
+&nbsp;&nbsp;&nbsp;[Neural Network Gen3.1](#nn-gen3.1)  
 [Results](#results)  
 
 
