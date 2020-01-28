@@ -1,4 +1,4 @@
 Keras==2.3.1
 numpy==1.16.5
 Pillow==6.2.0
-tensorflow-gpu==2.0.0
+tensorflow-gpu==2.0.1
