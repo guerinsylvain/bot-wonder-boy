@@ -1,9 +1,7 @@
-import keras
-from keras.layers import Conv2D, Concatenate
-from keras.layers.core import Dense, Flatten
-from keras.models import Model, Sequential, load_model
-from keras.optimizers import Adam
-from keras.layers import LeakyReLU
+from tensorflow.keras.layers import Conv2D, Concatenate, Dense, Flatten
+from tensorflow.keras.models import Model, Sequential, load_model
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.layers import LeakyReLU
 
 class Network:
     def __init__(self, frameset_size, n_out, batch_size, last_actions_size):
@@ -39,7 +37,7 @@ class Network:
         combinedInput = Concatenate()([actions_model.output, movement_model.output])
         x = Dense(256)(combinedInput)
         x = LeakyReLU(alpha=0.2)(x)
-        x = Dense(self.__n_out, init="uniform")(x)
+        x = Dense(self.__n_out, kernel_initializer="uniform")(x)
         x = LeakyReLU(alpha=0.2)(x)
         model = Model(inputs = [actions_model.input, movement_model.input], outputs = x)
 
@@ -55,8 +53,8 @@ class Network:
     def weights(self, weights):
         self.__model.set_weights(weights)
 
-    def compute(self, state):
-        return self.__model.predict(state)
+    def compute(self, state, batch_size):
+        return self.__model.predict(state, batch_size = batch_size)
 
     def load_model(self, fileName):
         self.__model = load_model(fileName)

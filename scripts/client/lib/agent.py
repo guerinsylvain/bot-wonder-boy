@@ -46,19 +46,20 @@ class DeepQLearningAgent(Agent):
         if explore and np.random.rand() <= self.epsilon:
             return np.random.choice(range(self.num_actions))               
         else:
-            q_compute = self.policy_network.compute([[last_last_actions], [last_frameset]])
+            q_compute = self.policy_network.compute([[last_last_actions], [last_frameset]], batch_size = 1)
             return np.argmax(q_compute[0])
 
     def learn(self):
         batch = self.replay_memory.sample(self.sample_size)
+        batch_size = len(batch)
 
         states_frameset = [exp.intial_frameset for exp in batch]
         states_last_actions = [exp.initial_last_actions for exp in batch]
-        current_q_values = np.array(self.policy_network.compute([states_last_actions, states_frameset]))
+        current_q_values = np.array(self.policy_network.compute([states_last_actions, states_frameset], batch_size = batch_size))
 
         next_frameset = np.array([exp.new_frameset for exp in batch])
         next_last_actions = np.array([exp.new_last_actions for exp in batch])
-        next_q_values = np.array(self.target_network.compute([next_last_actions, next_frameset]))
+        next_q_values = np.array(self.target_network.compute([next_last_actions, next_frameset], batch_size = batch_size))
 
         x_batch_last_actions = [None] * np.shape(batch)[0]
         x_batch_frameset = [None] * np.shape(batch)[0]
