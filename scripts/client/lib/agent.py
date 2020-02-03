@@ -32,8 +32,8 @@ class DeepQLearningAgent(Agent):
         self.frameset_size = frameset_size
         self.learn_count = 0
         self.num_actions = num_actions
-        self.policy_network = Network(frameset_size, num_actions, batch_size = self.sample_size, last_actions_size = last_actions_size)
-        self.target_network = Network(frameset_size, num_actions, batch_size = self.sample_size, last_actions_size = last_actions_size)
+        self.policy_network = Network(frameset_size, num_actions, last_actions_size = last_actions_size)
+        self.target_network = Network(frameset_size, num_actions, last_actions_size = last_actions_size)
         self.target_network.weights = self.policy_network.weights
         self.target_network_update_rate = 5
         self.replay_memory = ReplayMemory(capacity=50000)    
@@ -76,7 +76,10 @@ class DeepQLearningAgent(Agent):
                         y_batch[i,j] = batch[i].reward + self.gamma * np.max(next_q_values[i])
                 else:
                     y_batch[i,j] = current_q_values[i,j]                    
-        history = self.policy_network.train(train_samples=[x_batch_last_actions, x_batch_frameset], train_labels=y_batch, num_epochs=self.num_epochs)
+        history = self.policy_network.train(train_samples=[x_batch_last_actions, x_batch_frameset], 
+                                            train_labels=y_batch, 
+                                            num_epochs=self.num_epochs,
+                                            batch_size = batch_size)
         accuracy = history.history['accuracy'][-1]
 
         self.learn_count +=1

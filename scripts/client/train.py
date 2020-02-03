@@ -1,8 +1,11 @@
 import numpy as np
 import sys
+import tensorflow as tf
 from lib.agent import DeepQLearningAgent
 from lib.environment import Environment
 from lib.experience import Experience
+
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.FATAL)
 
 print(f'starting training')
 accuracy = 0

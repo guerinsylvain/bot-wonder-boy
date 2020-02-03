@@ -4,10 +4,9 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.layers import LeakyReLU
 
 class Network:
-    def __init__(self, frameset_size, n_out, batch_size, last_actions_size):
+    def __init__(self, frameset_size, n_out, last_actions_size):
         self.__frameset_size = frameset_size
         self.__n_out = n_out
-        self.__batch_size = batch_size
         self.__last_actions_size = last_actions_size
         self.__model = self.build_model()
 
@@ -62,6 +61,6 @@ class Network:
     def save_model(self, fileName):
         self.__model.save(fileName)
 
-    def train(self, train_samples, train_labels, num_epochs):
-        return self.__model.fit(train_samples, train_labels, epochs=num_epochs, verbose=0, batch_size=self.__batch_size)
+    def train(self, train_samples, train_labels, num_epochs, batch_size):
+        return self.__model.fit(train_samples, train_labels, epochs=num_epochs, verbose=0, batch_size=batch_size)
     
