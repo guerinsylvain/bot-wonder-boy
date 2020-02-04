@@ -6,6 +6,7 @@ from lib.environment import Environment
 from lib.experience import Experience
 
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.FATAL)
+f = open("trace.txt", "w")
 
 print(f'starting training')
 accuracy = 0
@@ -51,4 +52,7 @@ for episode in range(1, num_episodes):
         agent.saveModel(episode)
 
     print(f'episode {episode:0>4d}, level position: {(position_current_episode/81.60):.2f}, episode reward: {rewards_current_episode}, e: {agent.epsilon:.2f}, acc:{accuracy:.3f}     ')
+    f.write(f'episode {episode:0>4d}, level position: {(position_current_episode/81.60):.2f}, episode reward: {rewards_current_episode}, e: {agent.epsilon:.2f}, acc:{accuracy:.3f}     \n')
+    f.flush()
+f.close()
 environment.exit()
