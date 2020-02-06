@@ -7,9 +7,11 @@ class ReplayMemory:
         self.__memory = []
         self.__push_count = 0
         self.__capacity = capacity
+        self.__last_exp = None
 
     def write(self, initial_frameset, initial_last_actions, action, reward, new_frameset, new_last_actions, done):
         experience = Experience(initial_frameset, initial_last_actions, action, reward, new_frameset, new_last_actions, done)
+        self.__last_exp = experience
         if len(self.__memory) < self.__capacity:
             self.__memory.append(experience)
         else:
@@ -18,9 +20,8 @@ class ReplayMemory:
 
     def sample(self, batch_size) -> List[Experience]:
         if len(self.__memory) > batch_size:
-            last_exp = self.__memory[:1][0]
             sample = random.sample(self.__memory, batch_size-1)
-            sample.append(last_exp)
+            sample.append(self.__last_exp)
             return sample
         else:
             return random.sample(self.__memory, len(self.__memory))
