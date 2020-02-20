@@ -2,6 +2,7 @@
 .vscode
 setup/BizHawk-2.3
 venv
+*trace.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
