@@ -1,4 +1,4 @@
-from tensorflow.keras.layers import Conv2D, Concatenate, Dense, Flatten
+from tensorflow.keras.layers import AveragePooling2D, Conv2D, Concatenate, Dense, Flatten
 from tensorflow.keras.models import Model, Sequential, load_model
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.layers import LeakyReLU
@@ -20,11 +20,12 @@ class Network:
     def build_movements_model(self):
         model = Sequential(name='frameset')
         model.add(Conv2D(32, kernel_size =(3,3), input_shape=self.__frameset_size))     
-        model.add(LeakyReLU(alpha=0.5))
-        model.add(Conv2D(64, kernel_size =(3,3) ))
-        model.add(LeakyReLU(alpha=0.5))
-        model.add(Conv2D(64, kernel_size =(3,3), strides = 2))
-        model.add(LeakyReLU(alpha=0.5))
+        model.add(LeakyReLU(alpha=0.2))
+        model.add(Conv2D(64, kernel_size =(3,3)))
+        model.add(LeakyReLU(alpha=0.2))
+        model.add(Conv2D(128, kernel_size =(3,3), strides = 2))
+        model.add(LeakyReLU(alpha=0.2))
+        model.add(AveragePooling2D(pool_size=2))
         model.add(Flatten())
         print(model.summary())
         return model        
