@@ -7,7 +7,7 @@ import random
 class Environment:
     def __init__(self):
         self.__console = Console()
-        self.__frameset_size = (64, 85, 4) 
+        self.__frameset_size = (100, 100, 3) 
         self.__frameset = None
         self.__last_actions = None
         self.__hot_encode_action_size = (4, 4)        
@@ -63,7 +63,7 @@ class Environment:
             img = ImageGrab.grabclipboard()
 
         img = img.convert('L')
-        img = img.resize((85,64), resample=ANTIALIAS)
+        img = img.resize((100,100), resample=ANTIALIAS)
 
         # img.save(f'{random.random()}.png')
 
@@ -77,7 +77,7 @@ class Environment:
 
         if self.__frameset is None:
             img_array = np.array(img)
-            self.__frameset = np.stack([img_array, img_array, img_array, img_array], axis=2)
+            self.__frameset = np.stack([img_array, img_array, img_array], axis=2)
         else:
             img_array = np.array(img)
             self.__frameset = np.append(self.__frameset[:,:,1:], np.stack([img_array], axis=2), axis=2)

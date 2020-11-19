@@ -2,6 +2,7 @@ from tensorflow.keras.layers import AveragePooling2D, Conv2D, Concatenate, Dense
 from tensorflow.keras.models import Model, Sequential, load_model
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.layers import LeakyReLU
+from tensorflow.keras.applications.inception_v3 import InceptionV3
 
 class Network:
     def __init__(self, frameset_size, n_out, last_actions_size):
@@ -18,15 +19,25 @@ class Network:
         return model
 
     def build_movements_model(self):
-        model = Sequential(name='frameset')
-        model.add(Conv2D(32, kernel_size =(3,3), input_shape=self.__frameset_size))     
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(Conv2D(64, kernel_size =(3,3)))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(Conv2D(128, kernel_size =(3,3), strides = 2))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(AveragePooling2D(pool_size=2))
-        model.add(Flatten())
+        # model = Sequential(name='frameset')
+        # model.add(Conv2D(32, kernel_size =(3,3), input_shape=self.__frameset_size))     
+        # model.add(LeakyReLU(alpha=0.2))
+        # model.add(Conv2D(64, kernel_size =(3,3)))
+        # model.add(LeakyReLU(alpha=0.2))
+        # model.add(Conv2D(128, kernel_size =(3,3), strides = 2))
+        # model.add(LeakyReLU(alpha=0.2))
+        # model.add(AveragePooling2D(pool_size=2))               
+        # model.add(Flatten())
+        pre_trained_model = InceptionV3(input_shape = self.__frameset_size, 
+                                        include_top = False, # Leave out the last fully connected layer
+                                        weights = 'imagenet')
+
+        for layer in pre_trained_model.layers:
+            layer.trainable = False
+  
+        x = Flatten()(pre_trained_model.layers[-1].output)
+        model = Model(pre_trained_model.layers[0].input, x)
+
         print(model.summary())
         return model        
 
