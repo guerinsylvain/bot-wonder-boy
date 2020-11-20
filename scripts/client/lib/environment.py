@@ -1,4 +1,5 @@
 import numpy as np
+from tensorflow.keras.preprocessing.image import img_to_array
 from PIL import ImageGrab
 from PIL.Image import ANTIALIAS
 from lib.console import Console
@@ -62,8 +63,9 @@ class Environment:
         while img is None:
             img = ImageGrab.grabclipboard()
 
-        img = img.convert('L')
+        # img = img.convert('L')
         img = img.resize((100,100), resample=ANTIALIAS)
+        img_array = img_to_array(img) / 255
 
         # img.save(f'{random.random()}.png')
 
@@ -76,11 +78,9 @@ class Environment:
         #     self.__frameset = np.insert(last_screenshots, 3, new_screenshot, axis=0)
 
         if self.__frameset is None:
-            img_array = np.array(img)
-            self.__frameset = np.stack([img_array, img_array, img_array], axis=2)
+            self.__frameset = img_array
         else:
-            img_array = np.array(img)
-            self.__frameset = np.append(self.__frameset[:,:,1:], np.stack([img_array], axis=2), axis=2)
+            self.__frameset = img_array
 
         if self.__last_actions is None:
             self.__last_actions = np.stack([action, action, action, action])
