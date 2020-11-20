@@ -52,7 +52,7 @@ class Network:
         x = LeakyReLU(alpha=0.2)(x)
         model = Model(inputs = [actions_model.input, movement_model.input], outputs = x)
 
-        model.compile(Adam(lr=.0001), loss='mse', metrics=['accuracy'])
+        model.compile(Adam(lr=.0001), loss='mae', metrics=['accuracy'])
         print(model.summary())
         return model
 
