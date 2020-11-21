@@ -167,6 +167,7 @@ If anything goes wrong, please review the [Setup section](#setup)
 The state is observed at each frame and is composed of the following informations:  
 * a screenshot (will be sent to clipboard by Lua script)  
 * the wonderboy vitality/health (memory address 0x0C36 in Main RAM that varies from 0 to 12)  
+* the wonderboy death flag (memory addresses 0x0007 and 0x0008)
 * the level position (as 32th, 32=100%)  
 * the score:  
 base 10 (memory address 0x0121 in Main RAM that varies from 0 to 99)  
