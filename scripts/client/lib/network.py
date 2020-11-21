@@ -1,7 +1,8 @@
 from tensorflow.keras.layers import AveragePooling2D, Conv2D, Concatenate, Dense, Flatten
 from tensorflow.keras.models import Model, Sequential, load_model
-from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.optimizers import RMSprop
 from tensorflow.keras.layers import LeakyReLU
+
 from tensorflow.keras.applications.inception_v3 import InceptionV3
 
 class Network:
@@ -34,8 +35,14 @@ class Network:
 
         for layer in pre_trained_model.layers:
             layer.trainable = False
+
+        # The layer we will use for feature extraction in Inception v3 is called mixed7. 
+        # It is not the bottleneck of the network, but we are using it to keep a sufficiently large feature map (7x7 in this case). 
+        # (Using the bottleneck layer would have resulting in a 3x3 feature map, which is a bit small.) 
+        last_layer = pre_trained_model.get_layer('mixed7')  
+        last_output = last_layer.output          
   
-        x = Flatten()(pre_trained_model.layers[-1].output)
+        x = Flatten()(last_output)
         model = Model(pre_trained_model.layers[0].input, x)
 
         print(model.summary())
@@ -52,7 +59,7 @@ class Network:
         x = LeakyReLU(alpha=0.2)(x)
         model = Model(inputs = [actions_model.input, movement_model.input], outputs = x)
 
-        model.compile(Adam(lr=.0001), loss='mae', metrics=['accuracy'])
+        model.compile(RMSprop(lr=0.0001), loss='mae', metrics=['accuracy'])
         print(model.summary())
         return model
 
