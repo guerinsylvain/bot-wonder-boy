@@ -53,7 +53,7 @@ while playing do
             vitality = mem.get_vitality()
             level_position = mem.get_level_position()
             is_dead = mem.get_is_dead()
-            if vitality == 0 or level_position >= LEVEL_POSITION_END or is_dead > 0 then
+            if vitality == 0 or level_position >= LEVEL_POSITION_END or is_dead then
                 break
             end
         end        
@@ -61,7 +61,7 @@ while playing do
         client.screenshottoclipboard()
         rwd = reward.get_reward(mem.get_score(), vitality, level_position, is_dead) 
 
-        if vitality == 0 or is_dead > 0 then
+        if vitality == 0 or is_dead then
             print("lost")
             inGame = false
             done = 1            

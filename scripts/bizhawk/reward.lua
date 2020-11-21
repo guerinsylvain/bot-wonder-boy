@@ -14,7 +14,7 @@ end
 function M.get_reward(score, vitality, level_position, is_dead) 
 
     -- A large negative reward of -100 is given to the system for dying
-    if vitality == 0 or is_dead > 0 then
+    if vitality == 0 or is_dead then
         previous_vitality = vitality
         previous_score = score
         previous_level_position = level_position
